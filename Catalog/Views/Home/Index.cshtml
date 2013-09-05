@@ -1,0 +1,115 @@
+﻿@model Catalog.Models.ProductView
+@using Catalog.Helpers
+<span class="ui-icon-minusthick"></span>
+@using (Html.BeginForm("Index", "Home", FormMethod.Get, new { id = "FreeSearch" }))
+{
+    @Html.TextBox("q",Model.Search.FreeSearch)
+        <input type="submit" value="Search" />
+    if (!string.IsNullOrEmpty(Model.DidYouMean))
+    { 
+        <text>Did you mean</text><strong><em><a href="@Url.ForQuery(Model.DidYouMean)"> @Model.DidYouMean</a></em></strong>
+    }
+    if (Model.QueryError)
+    {
+        <span class="error">Invalid query</span>
+    }
+}
+<div class="leftColumn">
+    <strong>Filter Results By: </strong>
+    @foreach (var f in Model.Search.Facets)
+    {
+    <ul>
+        <li>
+            @(Html.SolrFieldPropName<Catalog.Models.Product>(f.Key))
+            <ul>
+                <li><span class="ui-icon-minusthick"></span><a class="removeFacet" href="@Url.RemoveFacet(f.Key)"> @f.Value</a></li>
+            </ul>
+        </li>
+    </ul>
+    }
+        
+    <ul>            
+        @foreach (var f in Model.Facets) { 
+        <li>
+            @{ if(f.Value.Count != 0)
+               {
+            <b>@(Html.SolrFieldPropName<Catalog.Models.Product>(f.Key))</b><!--Field Title-->
+            <ul>
+                @foreach (var fv in f.Value) {
+                <li><a href="@Url.SetFacet(f.Key, fv.Key)"> @fv.Key </a><span>( @fv.Value )</span></li>
+                } 
+            </ul>
+            }
+            }
+        </li>
+        } 
+    </ul>
+</div>
+<div id="ResultsTitle">
+@if(Model.Search.FreeSearch != null){
+<h3>Results for "@Model.Search.FreeSearch"</h3>
+} else {
+    <h3>Please enter a search...</h3>
+}
+    <div style="margin-top:-20px;">To further refine your search, use the filters located on the left side of the screen or perform an <a href="#">Advanced Search</a></div>
+</div>
+<div class="rightColumn">
+    <div id="Header">
+        @if (string.IsNullOrEmpty(Model.Search.Sort)) {
+        <strong>Catalog Id</strong>
+        } else {
+        <a href="@Url.RemoveParameters("sort")">Catalog Id</a>
+        }
+        |
+        @if (Model.Search.Sort == "nameSort") {
+        <strong>Sex</strong>
+        } else {
+        <a href="@Url.SetParameter("sort", "nameSort")">Sex</a>
+            }
+        |
+        @if (Model.Search.Sort == "price") { 
+        <strong>Age</strong>
+        } else {
+        <a href="@Url.SetParameter("sort", "price")">Age</a>
+        }
+        | Affeted | Cell Type |
+        @if (Model.Search.Sort.NotNullAnd(s => s.StartsWith("random"))) {  
+        <strong>Random</strong>
+        } else {
+        <a href="@Url.SetParameter("sort", "random_" + Html.RandomNumber())">Random</a>
+        }
+    </div>
+        
+    <div id="SearchResults">
+        @foreach (var p in Model.Products) { 
+        <div class="product">
+            <hr>
+            <div class="productName"> @p.Name </div>
+            Id: @p.Id 
+            @if(p.Price != null){
+            <label>Price:</label><span class="price"> @p.Price.ToString("C") </span><br />
+            }                                                                          
+            @*Products:@Html.Repeat(p.Products, cat => { 
+                <a href="@Url.SetFacet("cat", cat)"><%= cat %></a><% }, () => {%>, <% }); %>*@
+        </div>
+        }
+    </div>
+        <hr>
+        @Html.Partial("Pagination", new Catalog.Models.PaginationInfo {
+        PageUrl = Url.SetParameter("page", "!0"),
+        CurrentPage = Model.Search.PageIndex, 
+        PageSize = Model.Search.PageSize,
+        TotalItemCount = Model.TotalCount,
+    }) 
+        
+    <div class="pagesize">            
+    @*<% Html.Repeat(new[] { 5, 10, 20 }, ps => { %>
+            <% if (ps == Model.Search.PageSize) { %>
+            <span><%= ps%></span>
+            <% } else { %>
+            <a href="<%= Url.SetParameters(new {pagesize = ps, page = 1}) %>"><%= ps%></a>
+            <% } %>
+        <% }, () => { %> | <% }); %>*@
+    @*items per page*@
+    </div>
+</div>
