@@ -34,16 +34,13 @@ namespace Catalog
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
-            var solrServerUrl = ConfigurationManager.AppSettings["SolrServerUrl"];
+            var solrServerUrl = ConfigurationManager.AppSettings["solrUrl"];
             var solrConnection = new SolrConnection(solrServerUrl);
             Startup.Init<Product>(solrConnection);
             ModelBinders.Binders[typeof(SearchParameters)] = new SearchParametersBinder();
 
             //var task = new System.Threading.Tasks.Task(AddInitialDocuments);
-            Task.Factory.StartNew(() =>
-            {
                 AddInitialDocuments();
-            });
 		}
         
         /// <summary> </summary>

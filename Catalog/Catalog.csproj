@@ -39,9 +39,6 @@
     <DocumentationFile>bin\Catalog.XML</DocumentationFile>
     <PublishDatabaseSettings>
       <Objects>
-        <ObjectGroup Name="NewConnection1-Deployment" Order="1">
-          <Destination Path="Data Source=INFO19159\SQLEXPRESS%3bIntegrated Security=True" />
-        </ObjectGroup>
       </Objects>
     </PublishDatabaseSettings>
   </PropertyGroup>
@@ -241,6 +238,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="exampledocs\Produced_by_convert-jpg-to-pdf.net.pdf" />
     <None Include="Properties\PublishProfiles\test.pubxml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
@@ -349,7 +347,6 @@
     </Content>
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
-    <Content Include="Views\Home\AdvancedSearch.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Home\Pagination.cshtml" />
   </ItemGroup>

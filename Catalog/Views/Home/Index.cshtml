@@ -1,6 +1,6 @@
 ﻿@model Catalog.Models.ProductView
 @using Catalog.Helpers
-<span class="ui-icon-minusthick"></span>
+<title>Welcome to Megastore! 'Mega' means 'good', 'store' means 'thing'.</title>
 @using (Html.BeginForm("Index", "Home", FormMethod.Get, new { id = "FreeSearch" }))
 {
     @Html.TextBox("q",Model.Search.FreeSearch)
