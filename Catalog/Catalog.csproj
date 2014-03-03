@@ -239,7 +239,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="exampledocs\Produced_by_convert-jpg-to-pdf.net.pdf" />
-    <None Include="Properties\PublishProfiles\test.pubxml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -352,6 +351,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
