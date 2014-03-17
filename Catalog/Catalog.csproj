@@ -228,6 +228,7 @@
     <Compile Include="Models\PaginationInfo.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductView.cs" />
+    <Compile Include="Models\SampleDisplayData.cs" />
     <Compile Include="Models\SearchParameters.cs" />
     <Compile Include="Models\SpellChecking.cs" />
     <Compile Include="SolrQuerySanitizer.cs" />
@@ -303,6 +304,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="exampledocs\TEST.xml" />
+    <Content Include="Microsoft.Practices.ServiceLocation.dll" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.3.js" />
@@ -324,6 +326,7 @@
     <Content Include="Scripts\jstd-scenario-adapter-config.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="SolrNet.dll" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
