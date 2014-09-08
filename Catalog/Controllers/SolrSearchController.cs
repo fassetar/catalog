@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web.Http;
+using SolrNet.Impl;
 
 namespace Catalog.Controllers
 {   

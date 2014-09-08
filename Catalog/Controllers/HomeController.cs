@@ -8,6 +8,7 @@ using SolrNet.Commands.Parameters;
 using SolrNet.DSL;
 using SolrNet.Exceptions;
 using Microsoft.Practices.ServiceLocation;
+using SolrNet.Impl;
 namespace Catalog.Controllers
 {
     /// <summary> </summary>
@@ -48,7 +49,7 @@ namespace Catalog.Controllers
                     Search = parameters,
                     TotalCount = matchingProducts.NumFound,
                     Facets = matchingProducts.FacetFields,
-                    DidYouMean = GetSpellCheckingResult(matchingProducts),
+                    //DidYouMean = GetSpellCheckingResult(matchingProducts),
                 };
                 return View(view);
             }
