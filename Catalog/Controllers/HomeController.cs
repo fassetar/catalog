@@ -1,14 +1,13 @@
-﻿using System.Web.Mvc;
-using Catalog.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Catalog.Models;
+using Microsoft.Practices.ServiceLocation;
 using SolrNet;
 using SolrNet.Commands.Parameters;
 using SolrNet.DSL;
-using SolrNet.Exceptions;
-using Microsoft.Practices.ServiceLocation;
-using SolrNet.Impl;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+
 namespace Catalog.Controllers
 {
     /// <summary> </summary>

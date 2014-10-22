@@ -1,21 +1,17 @@
-﻿using System.Configuration;
+﻿using Catalog.Models;
+using Catalog.Models.Binders;
+using Microsoft.Practices.ServiceLocation;
+using SolrNet;
+using SolrNet.Exceptions;
+using SolrNet.Impl;
+using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
+using System.Text;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using SolrNet;
-using SolrNet.Impl;
-using Catalog.Models;
-using Microsoft.Practices.ServiceLocation;
-using System.IO;
-using SolrNet.Exceptions;
-using System;
-using System.Text;
-using System.Collections;
-using System.Collections.Generic;
-using Catalog.Models.Binders;
-using System.Threading.Tasks;
-using System.Threading;
 
 namespace Catalog
 {
