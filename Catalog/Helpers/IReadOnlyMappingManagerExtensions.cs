@@ -14,10 +14,10 @@
 // limitations under the License.
 #endregion
 
+using SolrNet;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
-using SolrNet;
 
 namespace Catalog.Helpers
 {

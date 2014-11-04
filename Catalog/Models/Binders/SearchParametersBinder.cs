@@ -14,13 +14,13 @@
 // limitations under the License.
 #endregion
 
+using Catalog.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
-using Catalog.Helpers;
 
 namespace Catalog.Models.Binders {
     public class SearchParametersBinder : IModelBinder {

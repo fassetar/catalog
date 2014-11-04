@@ -1,30 +1,28 @@
 ﻿function SearchController($scope) {
-    $scope.isLoadingSolr = false;
-    $scope.solrResult = null;
-    $scope.categoryFilter = '';
-    $scope.lowPrice = '';
-    $scope.highPrice = '';
+	$scope.isLoadingSolr = false;
+	$scope.solrResult = null;
+	$scope.categoryFilter = '';	
 
-    $scope.search = function () {
-        $scope.isLoadingSolr = true;
+	$scope.search = function () {
+		$scope.isLoadingSolr = true;
 
-        $.getJSON(
+		$.getJSON(
 			'/api/solrsearch/' + $scope.categoryFilter,
 			{
-			    'q': $scope.searchTerm,
+				'q': $scope.searchTerm,
 			},
 			function (data) {
-			    $scope.$apply(function () {
-			        $scope.isLoadingSolr = false;
-			        $scope.solrResult = data;
-			    });
+				$scope.$apply(function () {
+					$scope.isLoadingSolr = false;
+					$scope.solrResult = data;
+				});
 			}
 		);
-        $scope.categoryFilter = '';
-    };
+		$scope.categoryFilter = '';
+	};
 
-    $scope.filterCategory = function (category) {
-        $scope.categoryFilter = category;
-        $scope.search();
-    };
+	$scope.filterCategory = function (category) {
+		$scope.categoryFilter = category;
+		$scope.search();
+	};
 }
