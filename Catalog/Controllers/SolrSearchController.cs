@@ -1,13 +1,10 @@
-﻿using Microsoft.Practices.ServiceLocation;
+﻿using Catalog.Models;
+using Microsoft.Practices.ServiceLocation;
 using SolrNet;
 using SolrNet.Commands.Parameters;
-using Catalog.Models;
-using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using System.Web.Http;
-using SolrNet.Impl;
 
 namespace Catalog.Controllers
 {   
