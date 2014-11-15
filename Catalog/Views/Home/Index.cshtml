@@ -33,7 +33,7 @@
         <li>
             @{ if(f.Value.Count != 0)
                {
-            <b>@(Html.SolrFieldPropName<Catalog.Models.Product>(f.Key))</b><!--Field Title-->
+            <b>@(Html.SolrFieldPropName<Catalog.Models.Product>(f.Key))</b>
             <ul>
                 @foreach (var fv in f.Value) {
                 <li><a href="@Url.SetFacet(f.Key, fv.Key)"> @fv.Key </a><span>( @fv.Value )</span></li>
@@ -88,9 +88,7 @@
             Id: @p.Id 
             @if(p.Price != null){
             <label>Price:</label><span class="price"> @p.Price.ToString("C") </span><br />
-            }                                                                          
-            @*Products:@Html.Repeat(p.Products, cat => { 
-                <a href="@Url.SetFacet("cat", cat)"><%= cat %></a><% }, () => {%>, <% }); %>*@
+            }                                                                                      
         </div>
         }
     </div>
@@ -103,13 +101,6 @@
     }) 
         
     <div class="pagesize">            
-    @*<% Html.Repeat(new[] { 5, 10, 20 }, ps => { %>
-            <% if (ps == Model.Search.PageSize) { %>
-            <span><%= ps%></span>
-            <% } else { %>
-            <a href="<%= Url.SetParameters(new {pagesize = ps, page = 1}) %>"><%= ps%></a>
-            <% } %>
-        <% }, () => { %> | <% }); %>*@
-    @*items per page*@
+    
     </div>
 </div>
