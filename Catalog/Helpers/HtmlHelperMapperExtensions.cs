@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using SolrNet;
-using System.Web.WebPages.Html;
+using System.Linq;
 
 namespace Catalog.Helpers
 {

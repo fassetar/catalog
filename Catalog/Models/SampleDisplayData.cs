@@ -1,13 +1,12 @@
-﻿using SolrNet.Attributes;
-using System;
+﻿using Microsoft.Practices.ServiceLocation;
+using SolrNet;
+using SolrNet.Attributes;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using SolrNet;
 using System.Threading.Tasks;
-using Microsoft.Practices.ServiceLocation;
 
 namespace SolrIndexManager
 {

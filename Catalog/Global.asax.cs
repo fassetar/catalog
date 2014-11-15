@@ -1,31 +1,23 @@
-﻿using System.Configuration;
+﻿using Catalog.Models;
+using Catalog.Models.Binders;
+using Microsoft.Practices.ServiceLocation;
+using SolrNet;
+using SolrNet.Exceptions;
+using SolrNet.Impl;
+using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
+using System.Text;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using SolrNet;
-using SolrNet.Impl;
-using Catalog.Models;
-using Microsoft.Practices.ServiceLocation;
-using System.IO;
-using SolrNet.Exceptions;
-using System;
-using System.Text;
-using System.Collections;
-using System.Collections.Generic;
-using Catalog.Models.Binders;
-using System.Threading.Tasks;
-using System.Threading;
 
 namespace Catalog
-{
-    /// <summary> </summary>
+{    
 	public class MvcApplication : System.Web.HttpApplication
 	{
-        /// <summary> </summary>
         private static readonly string solrURL = ConfigurationManager.AppSettings["solrUrl"];
-
-        /// <summary> </summary>
 		protected void Application_Start()
 		{
 			AreaRegistration.RegisterAllAreas();
@@ -40,19 +32,17 @@ namespace Catalog
             ModelBinders.Binders[typeof(SearchParameters)] = new SearchParametersBinder();
 
             //var task = new System.Threading.Tasks.Task(AddInitialDocuments);
-                AddInitialDocuments();
+            AddInitialDocuments();
 		}
         
-        /// <summary> </summary>
         public IEnumerable<SolrNet.ExtractField> fields = new SolrNet.ExtractField[] {new ExtractField("sku","PDF") };
 
-        /// <summary>Adds some sample documents to Solr.</summary>
+       /// <summary>Adds some sample documents to Solr.</summary>
         private void AddInitialDocuments()
         {
             try {
                var solr = ServiceLocator.Current.GetInstance<ISolrOperations<Product>>();
                 solr.Delete(SolrQuery.All);
-
 
                 var connection = ServiceLocator.Current.GetInstance<ISolrConnection>();
                 foreach (var file in Directory.GetFiles(Server.MapPath("/exampledocs"), "*.xml")) {
@@ -76,6 +66,7 @@ namespace Catalog
                 solr.Commit();
                 solr.BuildSpellCheckDictionary();                
             } catch (SolrConnectionException) {
+                //Should really log this instead.
                 //throw new Exception(string.Format("Couldn't connect to Solr. Please make sure that Solr is running on '{0}' or change the address in your web.config, then restart the application.", solrURL));
             }
         }

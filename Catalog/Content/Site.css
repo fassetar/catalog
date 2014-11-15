@@ -30,21 +30,23 @@ ul {list-style: none;}
     width: 240px;
 }
 ul#BrowserNav {
-    clear:both;
-    height:25px;
-    background-color:grey;
-    border-radius: 2px 2px 0px 0px;
+    clear: both;
+    height: 25px;
+    background-color: grey;
+    -moz-border-radius: 2px 0;
+    -webkit-border-radius: 2px 0;
+    border-radius: 2px 0;
     padding-top: 5px;
 }
     ul#BrowserNav li {
-           margin: 0px 50px 5px -30px;
+           margin: 0 50px 5px -30px;
     }
 div#PlaceOrder {
     float: right;
     position: relative;
     left: -10px;
     top: -25px;
-    height: 0px;
+    height: 0;
     color:white;
 }
 div#C_Header_lblWelcome {
@@ -120,7 +122,9 @@ div#ResultsTitle {
     padding-left: 180px;
 }
 footer {
-    clear:both;
-    background-color:grey;
-    border-radius:0px 0px 2px 2px;
+    clear: both;
+    background-color: grey;
+    -moz-border-radius: 0 2px;
+    -webkit-border-radius: 0 2px;
+    border-radius: 0 2px;
 }
