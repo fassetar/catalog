@@ -250,6 +250,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\ng-grid.css" />
+    <Content Include="Content\ng-grid.min.css" />
     <Content Include="exampledocs\Produced_by_convert-jpg-to-pdf.net.pdf" />
     <Content Include="exampledocs\TEST.xml" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -275,6 +277,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\ng-grid.min.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\search.js" />
     <Content Include="favicon.ico" />
@@ -296,7 +299,7 @@
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Index.html" />
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Home\Pagination.cshtml" />
