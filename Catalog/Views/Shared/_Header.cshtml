@@ -1,20 +1,17 @@
-﻿<h3 id="CenterTitle">Catalog</h3>
-<ul id="MainNav" class="Nav">
-    <li><a href="#home">Login</a> |</li>
-    <li><a href="#news">My Account</a> |</li> 
-    <li><a href="#services">Services</a> |</li> 
-    <li><a href="#about">Support</a> |</li>
-    <li><a href="#contactus">Contact Us</a></li>
-</ul>
-<a id="AdvancedSearch" href="#Search">Advanced Search</a>
-<ul id="BrowserNav" class="Nav">
-    <li><a href="#home"><b>Browser</b></a></li>
-    <li><a href="#news"><b>Collections</b></a></li>
-    <li><a href="#"><b>Quick Order</b></a></li>
-    <li><a href="#"><b>Saved Carts</b></a></li>
-</ul>
-<div id="PlaceOrder"><label>Order:</label> 4 item(s)
-    <label>subtotal:</label><select><option>$500.00</option></select></div> 
-<div id="C_Header_lblWelcome">
-<p>Welcome <strong>Guest</strong></p>
+﻿<h1 class="text-center">Catalog-Demo</h1>
+<div ng-controller="CollapseDemoCtrl">
+    <nav class="navbar" role="navigation">
+        <button type="button" class="navbar-toggle" ng-click="isCollapsed = !isCollapsed">
+            <i class="fa fa-list fa-lg"></i>
+        </button>
+        <div class="container">
+            <div class="navbar-collapse collapse layout-nav text-uppercase" collapse="isCollapsed">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 </div>

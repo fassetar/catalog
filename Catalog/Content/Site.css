@@ -22,7 +22,13 @@ body {
     display:none;
   }
 }
-
+.btn , .form-control, .navbar {
+  border-radius:0;
+}
+/*Temp fixes*/
+.typeahead-wide > ul {
+    width: 100%;
+}
 
 /*Page Transitions*/
 .at-view-slide-out-left.ng-leave {
