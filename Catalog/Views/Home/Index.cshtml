@@ -109,11 +109,9 @@
             <pagination direction-links="false" total-items="totalItems" ng-model="currentPage" num-pages="smallnumPages"></pagination>
             <pre>The selected page no: {{currentPage}}</pre>
             <button class="btn btn-info" ng-click="setPage(3)">Set current page to: 3</button>
-
             <hr />
             <h4>Pager</h4>
             <pager total-items="totalItems" ng-model="currentPage"></pager>
-
             <hr />
             <h4>Limit the maximum visible buttons</h4>
             <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true"></pagination>

@@ -14,8 +14,10 @@
     @Html.Partial("_Header")
     @RenderBody()
     @Html.Partial("_Footer")
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/angular")
+    @*@@Scripts.Render("~/bundles/jquery")*@
+    @*@Scripts.Render("~/bundles/angular")*@
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>
     @RenderSection("script", required: false)
 </body>
 </html>

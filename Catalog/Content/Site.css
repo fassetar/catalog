@@ -1,130 +1,78 @@
-﻿h3#CenterTitle {
-    color: grey;
-    float:left;
-    width:470px;
-    margin-top:40px;
+﻿html {
+  position: relative;
+  min-height: 100%;
 }
 body {
-    padding-top: 10px;
-    width:1260px;
+  margin-bottom: 100px;
+  font-family: 'Droid Sans';
 }
-a {
-    text-decoration:none;
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  background-color: #f5f5f5;
 }
-ul.Nav li {
-    display:inline;
-}
-ul.Nav {
-    list-style-type:none;
-    margin:0;
-    white-space: nowrap;
-}
-ul#MainNav {
-    padding-top:40px;
-}
-ul {list-style: none;}
-#FreeSearch {
-    position: relative;
-    left: 910px;
-    top: -100px;
-    width: 240px;
-}
-ul#BrowserNav {
-    clear: both;
-    height: 25px;
-    background-color: grey;
-    -moz-border-radius: 2px 0;
-    -webkit-border-radius: 2px 0;
-    border-radius: 2px 0;
-    padding-top: 5px;
-}
-    ul#BrowserNav li {
-           margin: 0 50px 5px -30px;
-    }
-div#PlaceOrder {
-    float: right;
-    position: relative;
-    left: -10px;
-    top: -25px;
-    height: 0;
-    color:white;
-}
-div#C_Header_lblWelcome {
-    background-color:lightgray; 
-    float:left;
-    width:100%;
-    font-family: Arial,Helvetica,sans-serif;
-    font-size: 11px;
-    color: #000000;
-}
-    div#C_Header_lblWelcome p {
-        padding-left:5px;
-    }
-figure#logo {
-    width: 380px;
-    height: 70px;
-    float: left;
-}
-header {
-    height:120px;
-    width:100%;
-}
-form.form-search {
-    margin-right: 120px;
-    margin-top: -105px;
-}
-a#AdvancedSearch {
-    float:right;
-    position:relative;
-    top:10px;
-    left: -6px;
-    text-decoration:underline;
-}
-div#DisplayResults {
-    float: left;
-padding-right: 660px;
-}
-div#Filter {
-    border-style: solid;
-    border-width: 1px;
-    width:220px;
-    float:left;
-}
-    #Filter h4 {
-        margin: 5px;
-    }
 
-p.ng-binding {
-    padding-top:30px;
-    padding-left:230px;
+
+
+/*Page Transitions*/
+.at-view-slide-out-left.ng-leave {
+    -webkit-transition-property: -webkit-transform, opacity;
+    -moz-transition-property: -moz-transform, opacity;
+    -o-transition-property: -o-transform, opacity;
+    transition-property: transform, opacity;
+    -webkit-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transform: translate(0px, 0px);
+    -moz-transform: translate(0px, 0px);
+    -ms-transform: translate(0px, 0px);
+    -o-transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
+    opacity: 1;
+    z-index: 3;
+    position: absolute;
 }
-div.leftColumn {
-    float: left;
-    padding-right: 20px;
-    border: 1px solid;
-    margin-top: -27px;
-    height: 510px;
-    padding-left: 10px;
-    padding-top: 5px;
-    width: 125px;
+
+.at-view-slide-out-left.ng-leave-active {
+    -webkit-transform: translate(-100%, 0px);
+    -moz-transform: translate(-100%, 0px);
+    -ms-transform: translate(-100%, 0px);
+    -o-transform: translate(-100%, 0px);
+    transform: translate(-100%, 0px);
+    opacity: 0;
+    position: absolute;
 }
-div.leftColumn ul {
-    margin-left:-40px;
+
+.at-view-slide-in-left.ng-enter {
+    display:block;
+    width:100%;
+    -webkit-transition-property: -webkit-transform, opacity;
+    -moz-transition-property: -moz-transform, opacity;
+    -o-transition-property: -o-transform, opacity;
+    transition-property: transform, opacity;
+    -webkit-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transform: translate(-100%, 0px);
+    -moz-transform: translate(-100%, 0px);
+    -ms-transform: translate(-100%, 0px);
+    -o-transform: translate(-100%, 0px);
+    transform: translate(-100%, 0px);
+    opacity: 0;
+    z-index: 1;
+    position: absolute;
 }
-div.rightColumn {
-    margin-left: 160px;
-}
-    div.rightColumn #Header  {
-        padding:8px;
-    }
-div#ResultsTitle {
-    margin-top: -30px;
-    padding-left: 180px;
-}
-footer {
-    clear: both;
-    background-color: grey;
-    -moz-border-radius: 0 2px;
-    -webkit-border-radius: 0 2px;
-    border-radius: 0 2px;
+
+.at-view-slide-in-left.ng-enter-active {
+    -webkit-transform: translate(0px, 0px);
+    -moz-transform: translate(0px, 0px);
+    -ms-transform: translate(0px, 0px);
+    -o-transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
+    opacity: 1;
+    position: absolute;
 }
