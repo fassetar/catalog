@@ -1,21 +1,21 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="catalog.demo" lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/ico" href="~/favicon.ico">
     @Styles.Render("~/Content/base")
-    <link rel="shortcut icon" 
-      type="image/ico" 
-      href="~/favicon.ico">
-    <title>Catalog Site</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+    <link rel='stylesheet' type='application/x-woff' href='http://fonts.googleapis.com/css?family=Droid+Sans' />
+    <title>Fassett Catalog</title>
 </head>
 <body>
     @Html.Partial("_Header")
     @RenderBody()
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryui")
-    @Scripts.Render("~/bundles/controllers")
     @Html.Partial("_Footer")
-    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/angular")
+    @RenderSection("script", required: false)
 </body>
 </html>
