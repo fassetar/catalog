@@ -1,7 +1,7 @@
 ﻿<div class="container" ng-controller="TypeaheadCtrl">
     <div class="row">
         <div class="col-lg-12">
-            <form action="~/Home/Index" role="search">
+            <form action="~/Home/Index" method="post" role="search">
                 <div class="form-group">
                     <div class="input-group typeahead-wide">
                         <input type="text" name="q" autocomplete="off" class="form-control input-lg hidden-print" placeholder="Search" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8">

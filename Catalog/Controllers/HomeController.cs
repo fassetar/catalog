@@ -71,9 +71,7 @@ namespace Catalog.Controllers
 			return SolrQuery.All;
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
+		/// <summary> </summary>
 		/// <param name="parameters"></param>
 		/// <returns></returns>
 		public ICollection<ISolrQuery> BuildFilterQueries(SearchParameters parameters)
