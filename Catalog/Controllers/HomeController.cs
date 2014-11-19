@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Catalog.Controllers
 {
-	/// <summary> </summary>
+	/// <summary>Main Site Controller</summary>
 	[HandleError]
 	public class HomeController : Controller
 	{
@@ -19,9 +19,11 @@ namespace Catalog.Controllers
 
 		/// <summary>Solr service call.</summary>
 		private readonly ISolrOperations<Product> _solrOperations =
-			ServiceLocator.Current.GetInstance<ISolrOperations<Product>>();
+			ServiceLocator.Current.GetInstance<ISolrOperations<Product>>();		
 
-		/// <summary>Home page for the Coriell Catalog.</summary>
+		/// <summary>Search Grid Display</summary>
+		/// <param name="parameters"></param>
+		/// <returns></returns>		
 		public ActionResult Index(SearchParameters parameters)
 		{
 			try
@@ -71,7 +73,7 @@ namespace Catalog.Controllers
 			return SolrQuery.All;
 		}
 
-		/// <summary> </summary>
+		/// <summary>Applying Search Filters</summary>
 		/// <param name="parameters"></param>
 		/// <returns></returns>
 		public ICollection<ISolrQuery> BuildFilterQueries(SearchParameters parameters)
@@ -90,7 +92,7 @@ namespace Catalog.Controllers
 			return parameters.Facets.Select(f => f.Key);
 		}
 
-		/// <summary> </summary>
+		/// <summary>Get current applied sorts.</summary>
 		/// <param name="parameters"></param>
 		/// <returns></returns>
 		public SortOrder[] GetSelectedSort(SearchParameters parameters)

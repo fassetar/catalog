@@ -2,8 +2,11 @@
 
 namespace Catalog
 {
+	/// <summary>Combine root styles in base and js in controllers bundle.</summary>
 	public class BundleConfig
 	{				
+		/// <summary>Always apply minification and bundling!</summary>
+		/// <param name="bundles"></param>
 		public static void RegisterBundles(BundleCollection bundles)
 		{
 			bundles.Add(new ScriptBundle("~/bundles/jquery").Include(

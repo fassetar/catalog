@@ -1,7 +1,10 @@
-﻿<div class="container" ng-controller="TypeaheadCtrl">
+﻿﻿@*@model Catalog.Models.ProductView
+@using Catalog.Helpers*@
+
+<div class="container" ng-controller="homeCtrl">
     <div class="row">
         <div class="col-lg-12">
-            <form action="~/Home/Index" method="post" role="search">
+            <form action="/" method="get">
                 <div class="form-group">
                     <div class="input-group typeahead-wide">
                         <input type="text" name="q" autocomplete="off" class="form-control input-lg hidden-print" placeholder="Search" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8">
@@ -10,131 +13,21 @@
                         </div>
                     </div>
                 </div>
+                <div ng-app="checkbox">
+                    <input type="text" name="fq" ng-model="array_" />
+                </div>
             </form>
+            <label>Filter by: State's produce</label>
+            <div ng-app="checkbox">
+                <div ng-repeat="item in list">
+                    <input type="checkbox" checkbox-group />
+                    <label>{{item.value}}</label>
+                </div>{{array}}
+                <br>{{update()}}
+            </div>
         </div>
     </div>
 </div>
-
-@*
-@using (Html.BeginForm("Index", "Home", FormMethod.Get, new { id = "FreeSearch" }))
-{
-    @Html.TextBox("q",Model.Search.FreeSearch)
-        <input type="submit" value="Search" />
-    if (!string.IsNullOrEmpty(Model.DidYouMean))
-    { 
-        <text>Did you mean</text><strong><em><a href="@Url.ForQuery(Model.DidYouMean)"> @Model.DidYouMean</a></em></strong>
-    }
-    if (Model.QueryError)
-    {
-        <span class="error">Invalid query</span>
-    }
-}
-<div class="leftColumn">
-    <strong>Filter Results By: </strong>
-    @foreach (var f in Model.Search.Facets)
-    {
-    <ul>
-        <li>
-            @(Html.SolrFieldPropName<Catalog.Models.Product>(f.Key))
-            <ul>
-                <li><span class="ui-icon-minusthick"></span><a class="removeFacet" href="@Url.RemoveFacet(f.Key)"> @f.Value</a></li>
-            </ul>
-        </li>
-    </ul>
-    }
-        
-    <ul>            
-        @foreach (var f in Model.Facets) { 
-        <li>
-            @{ if(f.Value.Count != 0)
-               {
-            <b>@(Html.SolrFieldPropName<Catalog.Models.Product>(f.Key))</b>
-            <ul>
-                @foreach (var fv in f.Value) {
-                <li><a href="@Url.SetFacet(f.Key, fv.Key)"> @fv.Key </a><span>( @fv.Value )</span></li>
-                } 
-            </ul>
-            }
-            }
-        </li>
-        } 
-    </ul>
-</div>
-<div id="ResultsTitle">
-@if(Model.Search.FreeSearch != null){
-<h3>Results for "@Model.Search.FreeSearch"</h3>
-} else {
-    <h3>Please enter a search...</h3>
-}
-    <div style="margin-top:-20px;">To further refine your search, use the filters located on the left side of the screen or perform an <a href="#">Advanced Search</a></div>
-</div>
-<div class="rightColumn">
-    <div id="Header">
-        @if (string.IsNullOrEmpty(Model.Search.Sort)) {
-        <strong>Catalog Id</strong>
-        } else {
-        <a href="@Url.RemoveParameters("sort")">Catalog Id</a>
-        }
-        |
-        @if (Model.Search.Sort == "nameSort") {
-        <strong>Sex</strong>
-        } else {
-        <a href="@Url.SetParameter("sort", "nameSort")">Sex</a>
-            }
-        |
-        @if (Model.Search.Sort == "price") { 
-        <strong>Age</strong>
-        } else {
-        <a href="@Url.SetParameter("sort", "price")">Age</a>
-        }
-        | Affeted | Cell Type |
-        @if (Model.Search.Sort.NotNullAnd(s => s.StartsWith("random"))) {  
-        <strong>Random</strong>
-        } else {
-        <a href="@Url.SetParameter("sort", "random_" + Html.RandomNumber())">Random</a>
-        }
-    </div>
-        
-    <div id="SearchResults">
-        @foreach (var p in Model.Products) { 
-        <div class="product">
-            <hr>
-            <div class="productName"> @p.Name </div>
-            Id: @p.Id 
-            @if(p.Price != null){
-            <label>Price:</label><span class="price"> @p.Price.ToString("C") </span><br />
-            }                                                                                      
-        </div>
-        }
-    </div>
-        <hr>
-        @Html.Partial("Pagination", new Catalog.Models.PaginationInfo {
-        PageUrl = Url.SetParameter("page", "!0"),
-        CurrentPage = Model.Search.PageIndex, 
-        PageSize = Model.Search.PageSize,
-        TotalItemCount = Model.TotalCount,
-    }) 
-        
-    <div class="pagesize">            
-        <!--div ng-controller="PaginationDemoCtrl">
-            <h4>Default</h4>
-            <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></pagination>
-            <pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
-            <pagination direction-links="false" boundary-links="true" total-items="totalItems" ng-model="currentPage"></pagination>
-            <pagination direction-links="false" total-items="totalItems" ng-model="currentPage" num-pages="smallnumPages"></pagination>
-            <pre>The selected page no: {{currentPage}}</pre>
-            <button class="btn btn-info" ng-click="setPage(3)">Set current page to: 3</button>
-            <hr />
-            <h4>Pager</h4>
-            <pager total-items="totalItems" ng-model="currentPage"></pager>
-            <hr />
-            <h4>Limit the maximum visible buttons</h4>
-            <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true"></pagination>
-            <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
-            <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre>
-        </!div-->
-    </div>
-</div>*@
 @section script{
 <script>
     angular.module('catalog.demo', ['ui.bootstrap']);
@@ -155,9 +48,61 @@
         $scope.bigCurrentPage = 1;
     }).controller('CollapseDemoCtrl', function ($scope) {
         $scope.isCollapsed = true;
-    }).controller('TypeaheadCtrl', function($scope, $http) {
+    }).controller('homeCtrl', function ($scope) {
+        //Start: Typeahead stuff
         $scope.selected = undefined;
-        $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];               
-     });
+        $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+        //End
+
+        $scope.array = [1, 5];
+        $scope.array_ = angular.copy($scope.array);
+        $scope.list = [{            
+            "id": 1,
+            "value": "apples",
+        }, {
+            "id": 3,
+            "value": "oranges",
+        }, {
+            "id": 5,
+            "value": "pears"
+        }];
+
+        $scope.update = function () {
+            if ($scope.array.toString() !== $scope.array_.toString()) {
+                return "Changed";
+            } else {
+                return "Not Changed";
+            }
+        };
+
+    })
+    .directive("checkboxGroup", function () {
+        return {
+            restrict: "A",
+            link: function (scope, elem, attrs) {
+                // Determine initial checked boxes
+                if (scope.array.indexOf(scope.item.id) !== -1) {
+                    elem[0].checked = true;
+                }
+
+                // Update array on click
+                elem.bind('click', function () {
+                    var index = scope.array.indexOf(scope.item.id);
+                    // Add if checked
+                    if (elem[0].checked) {
+                        if (index === -1) scope.array.push(scope.item.id);
+                    }
+                        // Remove if unchecked
+                    else {
+                        if (index !== -1) scope.array.splice(index, 1);
+                    }
+                    // Sort and update DOM display
+                    scope.$apply(scope.array.sort(function (a, b) {
+                        return a - b
+                    }));
+                });
+            }
+        }
+    });
 </script>
 }
