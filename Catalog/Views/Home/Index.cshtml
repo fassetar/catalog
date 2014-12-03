@@ -1,7 +1,4 @@
-﻿﻿@*@model Catalog.Models.ProductView
-@using Catalog.Helpers*@
-
-<div class="container" ng-controller="homeCtrl">
+﻿<div class="container" ng-controller="homeCtrl">
     <div class="row">
         <div class="col-lg-12">
             <form action="/" method="get">
@@ -13,96 +10,111 @@
                         </div>
                     </div>
                 </div>
-                <div ng-app="checkbox">
-                    <input type="text" name="fq" ng-model="array_" />
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        @*TODO: (research) using ng-model doesn't work here?*@
+                        @*Theory: model is setting the value where bind is just listening.*@
+                        <label>Filter by: State's produce <span class="label label-default" ng-bind="update() ? 'changed' : 'unchange' "></span></label>
+                        <div>
+                            <input type="checkbox" ng-click="allNeedsClicked()" ng-checked="allNeedsMet()" />All
+                            <ul ng-repeat="item in items">
+                                <li class="list-unstyled"><input type="checkbox" ng-model="item.flag" />{{item.value}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                @*TODO: call a function in ng-model? below is a temp solution.*@
+                @*<input type="text" name="fq" ng-model="url()" />*@
+                <div ng-repeat="item in items">
+                    <input hidden type="text" name="fq" ng-model="item.value"  ng-if="item.flag"/>
                 </div>
             </form>
-            <label>Filter by: State's produce</label>
-            <div ng-app="checkbox">
-                <div ng-repeat="item in list">
-                    <input type="checkbox" checkbox-group />
-                    <label>{{item.value}}</label>
-                </div>{{array}}
-                <br>{{update()}}
-            </div>
         </div>
     </div>
 </div>
 @section script{
 <script>
-    angular.module('catalog.demo', ['ui.bootstrap']);
-    angular.module('catalog.demo').controller('PaginationDemoCtrl', function ($scope, $log) {
-        $scope.totalItems = 64;
-        $scope.currentPage = 4;
-
-        $scope.setPage = function (pageNo) {
-            $scope.currentPage = pageNo;
-        };
-
-        $scope.pageChanged = function () {
-            $log.log('Page changed to: ' + $scope.currentPage);
-        };
-
-        $scope.maxSize = 5;
-        $scope.bigTotalItems = 175;
-        $scope.bigCurrentPage = 1;
-    }).controller('CollapseDemoCtrl', function ($scope) {
+    angular.module('catalog.demo', ['ui.bootstrap']).controller('homeCtrl', function ($scope) {
+        //Bootstrap Mobile
         $scope.isCollapsed = true;
-    }).controller('homeCtrl', function ($scope) {
+
         //Start: Typeahead stuff
         $scope.selected = undefined;
         $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
         //End
-
-        $scope.array = [1, 5];
-        $scope.array_ = angular.copy($scope.array);
-        $scope.list = [{            
-            "id": 1,
-            "value": "apples",
+        
+        //Filter
+        $scope.items = [{
+            value: "apples",
+            flag: false
         }, {
-            "id": 3,
-            "value": "oranges",
+            value: "oranges",
+            flag: false
         }, {
-            "id": 5,
-            "value": "pears"
+            value: "pears",
+            flag: false
         }];
+        $scope.itemsUnchanged = angular.copy($scope.items);
 
-        $scope.update = function () {
-            if ($scope.array.toString() !== $scope.array_.toString()) {
-                return "Changed";
-            } else {
-                return "Not Changed";
+        $scope.allNeedsClicked = function () {
+            var newValue = !$scope.allNeedsMet();
+            for (var i = 0; i < $scope.items.length; i++) {
+                $scope.items[i].flag = newValue;
             }
         };
 
-    })
-    .directive("checkboxGroup", function () {
-        return {
-            restrict: "A",
-            link: function (scope, elem, attrs) {
-                // Determine initial checked boxes
-                if (scope.array.indexOf(scope.item.id) !== -1) {
-                    elem[0].checked = true;
-                }
-
-                // Update array on click
-                elem.bind('click', function () {
-                    var index = scope.array.indexOf(scope.item.id);
-                    // Add if checked
-                    if (elem[0].checked) {
-                        if (index === -1) scope.array.push(scope.item.id);
-                    }
-                        // Remove if unchecked
-                    else {
-                        if (index !== -1) scope.array.splice(index, 1);
-                    }
-                    // Sort and update DOM display
-                    scope.$apply(scope.array.sort(function (a, b) {
-                        return a - b
-                    }));
-                });
+        $scope.allNeedsMet = function () {
+            var needsMet = [];
+            for (var i = 0; i < $scope.items.length; i++) {
+                if ($scope.items[i].flag === true)
+                    needsMet.push(true);
             }
-        }
+            return (needsMet.length === $scope.items.length);
+        };
+
+        $scope.update = function () {
+            //test if equal and not changed, ande return true is updated/changed.
+            return !angular.equals($scope.items, $scope.itemsUnchanged);            
+        };
+
+        $scope.url = function () {
+            var values = [];
+            angular.forEach($scope.items, function (key, value) {
+                if (key.flag)
+                    url.push(key.value);
+            });
+            return (values.toString()) ? "" : this;
+        };
     });
+
+    @*TODO: convert my code into a directive, using this as a example.*@
+    // .directive("checkboxGroup", function () {
+    //    return {
+    //        restrict: "A",
+    //        link: function (scope, elem, attrs) {
+    //            // Determine initial checked boxes
+    //            if (scope.array.indexOf(scope.item.id) !== -1) {
+    //                elem[0].checked = true;
+    //            }
+
+    //            // Update array on click
+    //            elem.bind('click', function () {
+    //                var index = scope.array.indexOf(scope.item.id);
+    //                // Add if checked
+    //                if (elem[0].checked) {
+    //                    if (index === -1) scope.array.push(scope.item.id);
+    //                }
+    //                    // Remove if unchecked
+    //                else {
+    //                    if (index !== -1) scope.array.splice(index, 1);
+    //                }
+    //                // Sort and update DOM display
+    //                scope.$apply(scope.array.sort(function (a, b) {
+    //                    return a - b
+    //                }));
+    //            });
+    //        }
+    //    }
+    //});
 </script>
 }

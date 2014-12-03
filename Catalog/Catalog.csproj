@@ -246,11 +246,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\site.min.css">
+      <DependentUpon>site.css</DependentUpon>
+    </Content>
     <Content Include="exampledocs\Produced_by_convert-jpg-to-pdf.net.pdf" />
     <Content Include="exampledocs\TEST.xml" />
     <Content Include="Scripts\search.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\search.min.js">
+      <DependentUpon>search.js</DependentUpon>
+    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -265,6 +271,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Scripts\search.min.js.map">
+      <DependentUpon>search.min.js</DependentUpon>
     </Content>
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
