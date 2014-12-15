@@ -1,4 +1,7 @@
-﻿<div class="container" ng-controller="homeCtrl">
+﻿<div class="git-ribbon">
+    <a href="http://github.com/fassetar/catalog-demo" rel="me">Fork on GitHub</a>
+</div>
+<div class="container" ng-controller="homeCtrl">
     <div class="row">
         <div class="col-lg-12">
             <form action="/" method="get">
@@ -13,7 +16,7 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         @*TODO: (research) using ng-model doesn't work here?*@
-                        @*Theory: model is setting the value where bind is just listening.*@
+                        @*My theory is that the model is setting the value where bind is just listening.*@
                         <label>Filter by: State's produce <span class="label label-default" ng-bind="update() ? 'changed' : 'unchange' "></span></label>
                         <div>
                             <input type="checkbox" ng-click="allNeedsClicked()" ng-checked="allNeedsMet()" />All
@@ -45,13 +48,13 @@
         
         //Filter
         $scope.items = [{
-            value: "apples",
+            value: "Apples",
             flag: false
         }, {
-            value: "oranges",
+            value: "Oranges",
             flag: false
         }, {
-            value: "pears",
+            value: "Pears",
             flag: false
         }];
         $scope.itemsUnchanged = angular.copy($scope.items);
