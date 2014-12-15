@@ -16,4 +16,4 @@ Requirements (subject to change)
  - ng-grid
  - ng-animate
 
-> For Custom Javascripts build as you would normally in the asp.net solution and bundle them like you would.
+> For Custom Javascripts build as you would normally in the asp.net solution and bundle them in with node.
