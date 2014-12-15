@@ -2,13 +2,13 @@
 
 namespace Catalog
 {
-    /// <summary> </summary>
+	/// <summary> </summary>
 	public static class SolrQuerySanitizer
 	{
 		private static readonly Regex SolrSanitizationPattern = new Regex(
 			@"\+|\-|!|\(|\)|\{|\}|\[|\]|\^|~|\*|\?|:|;|&", RegexOptions.Compiled);
 
-        /// <summary> </summary>
+		/// <summary> </summary>
 		public static string Sanitize(string input)
 		{
 			return string.IsNullOrWhiteSpace(input) ?

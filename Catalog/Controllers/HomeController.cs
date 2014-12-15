@@ -5,8 +5,10 @@ using SolrNet.Commands.Parameters;
 using SolrNet.DSL;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace Catalog.Controllers
 {
@@ -105,6 +107,25 @@ namespace Catalog.Controllers
 										.Select(c => c.Suggestions.FirstOrDefault())
 										.Where(c => !string.IsNullOrEmpty(c))
 										.ToArray());
+		}
+
+		[HttpGet]
+		public ActionResult Bundle(string path, string type)
+		{
+			string filepath = Server.MapPath(path);
+            string content = string.Empty;
+            try
+            {
+                using(var stream = new StreamReader(filepath))
+                {
+                    content = stream.ReadToEnd();
+                }
+            }
+            catch (Exception)
+            {
+                return Content("<!-- WARN: null content -->");
+            }
+			return Content(content, type);
 		}
 	}
 }

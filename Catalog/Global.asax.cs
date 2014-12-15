@@ -24,8 +24,7 @@ namespace Catalog
 
 			WebApiConfig.Register(GlobalConfiguration.Configuration);
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-			RouteConfig.RegisterRoutes(RouteTable.Routes);
-			BundleConfig.RegisterBundles(BundleTable.Bundles);
+			RouteConfig.RegisterRoutes(RouteTable.Routes);            
 			var solrServerUrl = ConfigurationManager.AppSettings["solrUrl"];
 			var solrConnection = new SolrConnection(solrServerUrl);
 			Startup.Init<Product>(solrConnection);
