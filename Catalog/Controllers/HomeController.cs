@@ -52,7 +52,7 @@ namespace Catalog.Controllers
 					Search = parameters,
 					TotalCount = matchingProducts.NumFound,
 					Facets = matchingProducts.FacetFields,
-					//DidYouMean = GetSpellCheckingResult(matchingProducts),
+					DidYouMean = GetSpellCheckingResult(matchingProducts)
 				};
 				return View(view);
 			}
@@ -113,18 +113,18 @@ namespace Catalog.Controllers
 		public ActionResult Bundle(string path, string type)
 		{
 			string filepath = Server.MapPath(path);
-            string content = string.Empty;
-            try
-            {
-                using(var stream = new StreamReader(filepath))
-                {
-                    content = stream.ReadToEnd();
-                }
-            }
-            catch (Exception)
-            {
-                return Content("<!-- WARN: null content -->");
-            }
+			string content = string.Empty;
+			try
+			{
+				using(var stream = new StreamReader(filepath))
+				{
+					content = stream.ReadToEnd();
+				}
+			}
+			catch (Exception)
+			{
+				return Content("<!-- WARN: null content -->");
+			}
 			return Content(content, type);
 		}
 	}

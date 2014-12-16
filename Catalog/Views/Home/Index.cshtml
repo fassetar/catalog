@@ -1,4 +1,5 @@
-﻿<div class="git-ribbon">
+﻿@model Catalog.Models.ProductView
+<div class="git-ribbon hidden-print">
     <a href="http://github.com/fassetar/catalog-demo" rel="me">Find on GitHub</a>
 </div>
 <div class="container" ng-controller="homeCtrl">
@@ -7,16 +8,14 @@
             <form action="/" method="get">
                 <div class="form-group">
                     <div class="input-group typeahead-wide">
-                        <input type="text" name="q" autocomplete="off" class="form-control input-lg hidden-print" placeholder="Search" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8">
                         <div class="input-group-btn">
                             <button type="submit" class="btn btn-success btn-lg"><i class="fa fa-search"></i></button>
                         </div>
+                        <input type="text" name="q" autocomplete="off" class="form-control input-lg hidden-print" placeholder="Search" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8">                       
                     </div>
                 </div>
                 <div class="panel panel-default">
-                    <div class="panel-body">
-                        @*TODO: (research) using ng-model doesn't work here?*@
-                        @*My theory is that the model is setting the value where bind is just listening.*@
+                    <div class="panel-body">                        
                         <label>Filter by: State's produce <span class="label label-default" ng-bind="update() ? 'changed' : 'unchange' "></span></label>
                         <div>
                             <input type="checkbox" ng-click="allNeedsClicked()" ng-checked="allNeedsMet()" />All
@@ -25,15 +24,26 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                @*TODO: call a function in ng-model? below is a temp solution.*@
-                @*<input type="text" name="fq" ng-model="url()" />*@
+                </div>                
                 <div ng-repeat="item in items">
                     <input hidden type="text" name="fq" ng-model="item.value"  ng-if="item.flag"/>
                 </div>
             </form>
         </div>
     </div>
+</div>
+<div id="SearchResults">
+        @foreach (var p in Model.Products) {
+        <div class="product">
+                        <hr>
+                        <div class="productName"> @p.Name </div>
+                        Id: @p.Id
+                        @if(p.Price != null){
+            <label>Price:</label><span class="price"> @p.Price.ToString("C") </span><br />
+            }
+            
+        </div>
+        }    
 </div>
 @section script{
 <script>
@@ -88,36 +98,6 @@
             });
             return (values.toString()) ? "" : this;
         };
-    });
-
-    @*TODO: convert my code into a directive, using this as a example.*@
-    // .directive("checkboxGroup", function () {
-    //    return {
-    //        restrict: "A",
-    //        link: function (scope, elem, attrs) {
-    //            // Determine initial checked boxes
-    //            if (scope.array.indexOf(scope.item.id) !== -1) {
-    //                elem[0].checked = true;
-    //            }
-
-    //            // Update array on click
-    //            elem.bind('click', function () {
-    //                var index = scope.array.indexOf(scope.item.id);
-    //                // Add if checked
-    //                if (elem[0].checked) {
-    //                    if (index === -1) scope.array.push(scope.item.id);
-    //                }
-    //                    // Remove if unchecked
-    //                else {
-    //                    if (index !== -1) scope.array.splice(index, 1);
-    //                }
-    //                // Sort and update DOM display
-    //                scope.$apply(scope.array.sort(function (a, b) {
-    //                    return a - b
-    //                }));
-    //            });
-    //        }
-    //    }
-    //});
+    });    
 </script>
 }
