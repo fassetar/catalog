@@ -3,6 +3,7 @@ using System.Web.Routing;
 
 namespace Catalog
 {	
+	/// <summary>Basic routing system</summary>
 	public class RouteConfig
 	{
 		public static void RegisterRoutes(RouteCollection routes)

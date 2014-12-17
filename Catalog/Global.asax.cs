@@ -44,11 +44,11 @@ namespace Catalog
 				solr.Delete(SolrQuery.All);
 
 				var connection = ServiceLocator.Current.GetInstance<ISolrConnection>();
-				foreach (var file in Directory.GetFiles(Server.MapPath("/exampledocs"), "*.xml")) {
+				foreach (var file in Directory.GetFiles(Server.MapPath("/Docs"), "*.xml")) {
 					connection.Post("/update", File.ReadAllText(file, Encoding.UTF8));
 				}
 
-				foreach (var file in Directory.GetFiles(Server.MapPath("/exampledocs/"), "*.pdf", SearchOption.AllDirectories))
+				foreach (var file in Directory.GetFiles(Server.MapPath("/DOCS"), "*.pdf", SearchOption.AllDirectories))
 				{
 					var fileinfo = new FileInfo(file);
 					using (FileStream fileStream = File.OpenRead(file))
@@ -66,7 +66,8 @@ namespace Catalog
 				solr.BuildSpellCheckDictionary();                
 			} catch (SolrConnectionException) {
 				//Should really log this instead.
-				//throw new Exception(string.Format("Couldn't connect to Solr. Please make sure that Solr is running on '{0}' or change the address in your web.config, then restart the application.", solrURL));
+				//throw new Exception(string.Format("Couldn't connect to Solr. 
+				//Please make sure that Solr is running on '{0}' or change the address in your web.config, then restart the application.", solrURL));
 			}
 		}
 	}
