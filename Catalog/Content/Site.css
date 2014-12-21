@@ -29,9 +29,9 @@ body {
 .typeahead-wide > ul {
 	width: 100%;
 }
-/*.btn-lg {
+.btn-lg {
 	height: 46px;
-}*/
+}
 
 /*Page Transitions*/
 .at-view-slide-out-left.ng-leave {
