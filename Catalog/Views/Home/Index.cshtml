@@ -7,11 +7,11 @@
         <div class="col-lg-12">
             <form action="/" method="get">
                 <div class="form-group">
-                    <div class="input-group typeahead-wide">
+                    <div class="input-group typeahead-wide input-group-lg">
                         <div class="input-group-btn">
                             <button type="submit" class="btn btn-success btn-lg"><i class="fa fa-search"></i></button>
                         </div>
-                        <input type="text" name="q" autocomplete="off" class="form-control input-lg hidden-print" placeholder="Search" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8">
+                        <input type="text" name="q" autocomplete="off" class="form-control hidden-print" placeholder="Search" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8">
                     </div>
                 </div>
                 <div class="panel panel-default">
@@ -43,10 +43,8 @@
             {
                 <label>Price:</label><span class="price"> @p.Price.ToString("C") </span><br />
             }
-
         </div>
     }
-
     @section script{
         <script>
             angular.module('catalog.demo', ['ui.bootstrap','ui.grid']).controller('homeCtrl', function ($scope) {
