@@ -4,7 +4,7 @@ Catalog-Demo
 
 >Application that is used for demo purposes only, and maintained to show my best practices.
 
-Requirements (subject to change)
+Requirements
 ============
 > I Avoid using the Jquery or any other javascripts included in the Asp.net Template. Handle all js files in Node solutions.
 
