@@ -29,13 +29,9 @@ body {
 .typeahead-wide > ul {
 	width: 100%;
 }
-.grid1 {
-	width: 500px;
-	height: 250px;
+#grid1 {
+	height: 190px;
   }
-.btn-lg {
-	height: 46px;
-}
 
 /*Page Transitions*/
 .at-view-slide-out-left.ng-leave {
@@ -108,9 +104,7 @@ body {
 	-webkit-transform: rotate(-45deg);
 	-ms-transform: rotate(-45deg);
 	-o-transform: rotate(-45deg);
-	transform: rotate(-45deg);	
-	-moz-box-shadow: 0 0 1em #888;
-	-webkit-box-shadow: 0 0 1em #888;
+	transform: rotate(-45deg);			
 	box-shadow: 0 0 1em #888;	
 	z-index: 9999;
 }
