@@ -34,10 +34,11 @@
         },
         "font-awesome": {
             "../Content": "**/*.css",
-            "../Content/fonts": "fonts/*"
+            "../fonts": "fonts/*"
         },
         "angular": {
-            "../Scripts": "*.js"
+            "../Scripts": "*.js",
+            "../Scripts": "*.map"
         },
         "angular-ui-grid": {
             "../Scripts": "*.js",
