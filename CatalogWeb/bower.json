@@ -29,21 +29,26 @@
     },
     "exportsOverride": {
         "bootstrap": {
-            "Content": "*"
+            "../Content": "**/**/*.css",
+            "../Content/fonts": "**/fonts/*"
         },
         "font-awesome": {
-            "Content": "**/*.css",
-            "Content/fonts": "fonts/*"
+            "../Content": "**/*.css",
+            "../Content/fonts": "fonts/*"
         },
         "angular": {
-            "Scripts": "*.js"
+            "../Scripts": "*.js"
         },
         "angular-ui-grid": {
-            "Scripts": "*.js",            
-            "Content": "*.css"
+            "../Scripts": "*.js",
+            "../Content": "*.css"
         },
         "angular-bootstrap": {
-            "Scripts": "*.js"
+            "../Scripts": "*.js"
+        },
+        "jquery": { 
+            "../Scripts" : "Exclude"
         }
+
     } 
 }
