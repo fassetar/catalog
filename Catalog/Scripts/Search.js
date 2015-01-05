@@ -1,4 +1,4 @@
-﻿function SearchController($scope) {
+﻿function SearchController($scope) {    
 	$scope.isLoadingSolr = false;
 	$scope.solrResult = null;
 	$scope.categoryFilter = '';	
@@ -7,7 +7,7 @@
 		$scope.isLoadingSolr = true;
 
 		$.getJSON(
-			'/api/solrsearch/' + $scope.categoryFilter,
+			'/Home/Search/' + $scope.categoryFilter,
 			{
 				'q': $scope.searchTerm,
 			},

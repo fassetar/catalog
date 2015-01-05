@@ -29,6 +29,10 @@ body {
 .typeahead-wide > ul {
 	width: 100%;
 }
+.grid1 {
+	width: 500px;
+	height: 250px;
+  }
 .btn-lg {
 	height: 46px;
 }

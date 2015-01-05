@@ -32,9 +32,7 @@ namespace Catalog.Helpers
             return TryParse(u, 0);
         }
 
-        /// <summary>
-        /// Like null coalescing operator (??) but including empty strings
-        /// </summary>
+        /// <summary>Like null coalescing operator (??) but including empty strings.</summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <returns></returns>
@@ -42,9 +40,7 @@ namespace Catalog.Helpers
             return string.IsNullOrEmpty(a) ? b : a;
         }
 
-        /// <summary>
-        /// If <paramref name="a"/> is empty, returns null
-        /// </summary>
+        /// <summary>If <paramref name="a"/> is empty, returns null.</summary>
         /// <param name="a"></param>
         /// <returns></returns>
         public static string EmptyToNull(string a) {

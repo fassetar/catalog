@@ -1,5 +1,4 @@
-﻿@model Catalog.Models.ProductView
-<div class="git-ribbon hidden-print">
+﻿<div class="git-ribbon hidden-print">
     <a href="http://github.com/fassetar/catalog-demo" rel="me">Find on GitHub</a>
 </div>
 <div class="container" ng-controller="homeCtrl">
@@ -33,18 +32,6 @@
     </div>
     <div id="grid1" ui-grid="{ data: myData }" class="grid"></div>
 </div>
-    @foreach (var p in Model.Products)
-    {
-        <div class="product">
-            <hr>
-            <div class="productName"> @p.Name </div>
-            Id: @p.Id
-            @if (p.Price != null)
-            {
-                <label>Price:</label><span class="price"> @p.Price.ToString("C") </span><br />
-            }
-        </div>
-    }
     @section script{
         <script>
             angular.module('catalog.demo', ['ui.bootstrap','ui.grid']).controller('homeCtrl', function ($scope) {

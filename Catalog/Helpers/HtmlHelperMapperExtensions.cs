@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace Catalog.Helpers
 {
+    /// <summary>Extension used for mapping solr facets.</summary>
     public static class HtmlHelperMapperExtensions
     {
         /// <summary> </summary>

@@ -21,12 +21,21 @@ namespace Catalog.Controllers
 
 		/// <summary>Solr service call.</summary>
 		private readonly ISolrOperations<Product> _solrOperations =
-			ServiceLocator.Current.GetInstance<ISolrOperations<Product>>();		
+			ServiceLocator.Current.GetInstance<ISolrOperations<Product>>();
+
+        public ActionResult Index(SearchParameters parameters)
+        {
+            if (null != parameters)
+            {
+
+            }
+            return View();
+        }
 
 		/// <summary>Search Grid Display</summary>
 		/// <param name="parameters"></param>
 		/// <returns></returns>		
-		public ActionResult Index(SearchParameters parameters)
+		public JsonResult Search(SearchParameters parameters)
 		{
 			try
 			{
@@ -54,13 +63,13 @@ namespace Catalog.Controllers
 					Facets = matchingProducts.FacetFields,
 					DidYouMean = GetSpellCheckingResult(matchingProducts)
 				};
-				return View(view);
+                return Json(view, JsonRequestBehavior.AllowGet);
 			}
-			catch (/*InvalidFieldException*/Exception)
+			catch (Exception)
 			{
-				return View(new ProductView
+				return Json(new ProductView
 				{
-					QueryError = true,
+					QueryError = true
 				});
 			}
 		}
