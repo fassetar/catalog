@@ -80,12 +80,10 @@ namespace Catalog.Controllers
 		/// <returns></returns>
 		public ISolrQuery BuildQuery(SearchParameters parameters)
 		{
-			if (!string.IsNullOrEmpty(parameters.FreeSearch))
-				return new SolrQuery(parameters.FreeSearch);
-			return SolrQuery.All;
+		    return !string.IsNullOrEmpty(parameters.FreeSearch) ? new SolrQuery(parameters.FreeSearch) : SolrQuery.All;
 		}
 
-		/// <summary>Applying Search Filters</summary>
+	    /// <summary>Applying Search Filters</summary>
 		/// <param name="parameters"></param>
 		/// <returns></returns>
 		public ICollection<ISolrQuery> BuildFilterQueries(SearchParameters parameters)
@@ -112,7 +110,7 @@ namespace Catalog.Controllers
 			return new[] { SortOrder.Parse(parameters.Sort) }.Where(o => o != null).ToArray();
 		}
 
-		private string GetSpellCheckingResult(SolrQueryResults<Product> products) {
+		private static string GetSpellCheckingResult(SolrQueryResults<Product> products) {
 			return string.Join(" ", products.SpellChecking
 										.Select(c => c.Suggestions.FirstOrDefault())
 										.Where(c => !string.IsNullOrEmpty(c))
