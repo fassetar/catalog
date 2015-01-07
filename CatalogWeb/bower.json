@@ -1,55 +1,54 @@
 {
-    "name": "Catalog-Demo",
-    "version": "0.0.1",
-    "homepage": "https://github.com/fassetar/Catalog-Demo",
-    "authors": [
-        "Anthony Fassett <fassetar@gmail.com>"
-    ],
-    "description": "Standalone version of catalog-demo.",
-    "license": "MIT",
-    "private": true,
-    "ignore": [
-        "**/.*",
-        "node_modules",
-        "bower_components",
-        "test",
-        "tests",
-        "boostrap/bootstrap.js",
-        "jquery"
-    ],
-    "dependencies": {
-        "angular": "~1.3.8",
-        "angular-bootstrap": "~0.12.0",
-        "angular-ui-grid": "~3.0.0-rc.16",
-        "bootstrap": "~3.3.1",
-        "font-awesome": "~4.2.0"
+  "name": "Catalog-Demo",
+  "version": "0.0.1",
+  "homepage": "https://github.com/fassetar/Catalog-Demo",
+  "authors": [
+    "Anthony Fassett <fassetar@gmail.com>"
+  ],
+  "description": "Standalone version of catalog-demo.",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "boostrap/bootstrap.js",
+    "jquery"
+  ],
+  "dependencies": {
+    "angular": "~1.3.8",
+    "angular-bootstrap": "~0.12.0",
+    "angular-ui-grid": "~3.0.0-rc.16",
+    "bootstrap": "~3.3.1",
+    "font-awesome": "~4.2.0",
+    "angular-route": "~1.3.8"
+  },
+  "resolutions": {
+    "angular": "~1.3.8"
+  },
+  "exportsOverride": {
+    "bootstrap": {
+      "../Content": "**/**/*.css",
+      "../Content/fonts": "**/fonts/*"      
     },
-    "resolutions": {
-        "angular": "~1.3.8"
+    "font-awesome": {
+      "../Content": "**/*.css",
+      "../fonts": "fonts/*"
     },
-    "exportsOverride": {
-        "bootstrap": {
-            "../Content": "**/**/*.css",
-            "../Content/fonts": "**/fonts/*"
-        },
-        "font-awesome": {
-            "../Content": "**/*.css",
-            "../fonts": "fonts/*"
-        },
-        "angular": {
-            "../Scripts": "*.js",
-            "../Scripts": "*.map"
-        },
-        "angular-ui-grid": {
-            "../Scripts": "*.js",
-            "../Content": "*.css"
-        },
-        "angular-bootstrap": {
-            "../Scripts": "*.js"
-        },
-        "jquery": { 
-            "../Scripts" : "Exclude"
-        }
-
-    } 
+    "angular": {
+      "../Scripts": "*.map"
+    },
+    "angular-ui-grid": {
+      "../Scripts": "*.js",
+      "../Content": "*.css"
+    },
+    "angular-bootstrap": {
+      "../Scripts": "*.js"
+    },
+    "jquery": {
+      "../Scripts": "Exclude"
+    }
+  }
 }

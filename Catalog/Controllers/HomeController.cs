@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.Optimization;
 using System.Web.UI.WebControls;
 
 namespace Catalog.Controllers
@@ -23,14 +24,14 @@ namespace Catalog.Controllers
 		private readonly ISolrOperations<Product> _solrOperations =
 			ServiceLocator.Current.GetInstance<ISolrOperations<Product>>();
 
-        public ActionResult Index(SearchParameters parameters)
-        {
-            if (null != parameters)
-            {
+		public ActionResult Index(SearchParameters parameters)
+		{
+			if (null != parameters)
+			{
 
-            }
-            return View();
-        }
+			}
+			return View();
+		}
 
 		/// <summary>Search Grid Display</summary>
 		/// <param name="parameters"></param>
@@ -63,7 +64,7 @@ namespace Catalog.Controllers
 					Facets = matchingProducts.FacetFields,
 					DidYouMean = GetSpellCheckingResult(matchingProducts)
 				};
-                return Json(view, JsonRequestBehavior.AllowGet);
+				return Json(view, JsonRequestBehavior.AllowGet);
 			}
 			catch (Exception)
 			{
@@ -135,6 +136,6 @@ namespace Catalog.Controllers
 				return Content("<!-- WARN: null content -->");
 			}
 			return Content(content, type);
-		}
+		}	    
 	}
 }
