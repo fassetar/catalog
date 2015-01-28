@@ -7,7 +7,8 @@ Catalog-Demo
 Requirements
 ============
 > I Avoid using the Jquery or any other javascripts included in the Asp.net Template. Handle all js files in Node solutions.
-
+ For Custom Javascripts build as you would normally in the asp.net solution and bundle them in with node.
+ 
  - NodeJs
  - Asp.net MVC 5.0
  - AngularJs 
@@ -16,4 +17,3 @@ Requirements
  - ng-grid
  - ng-animate
 
-> For Custom Javascripts build as you would normally in the asp.net solution and bundle them in with node.
