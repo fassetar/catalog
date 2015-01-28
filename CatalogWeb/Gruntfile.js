@@ -19,13 +19,12 @@ module.exports = function (grunt) {
 		bower: {
 			install: {
 				options: {
-                    targetDir: '../Catalog/Exclude',
-                    cleanTargeDir: true,           
+                    targetDir: '../Catalog/Exclude',                    
 					layout: function (type, component) {
 						var renamedType = type;
                         if (type == 'js') renamedType = 'Scripts';
                         else if (type == 'css') renamedType = 'Content';
-                        else if (type == 'woff') renameType = 'Content';;
+                        else if (type == 'woff') renameType = 'Content';
 						return path.join(renamedType);
 					},					              
 					install: true,
