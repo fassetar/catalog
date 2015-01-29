@@ -1,4 +1,3 @@
-var path = require('path');
 module.exports = function (grunt) {
 	pkg: grunt.file.readJSON('package.json'),
 	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
@@ -13,23 +12,6 @@ module.exports = function (grunt) {
 				],			
 				bowerOptions: {
 						relative: false
-				}
-			}
-		},
-		bower: {
-			install: {
-				options: {
-                    targetDir: '../Catalog/Exclude',                    
-					layout: function (type, component) {
-						var renamedType = type;
-                        if (type == 'js') renamedType = 'Scripts';
-                        else if (type == 'css') renamedType = 'Content';
-                        else if (type == 'woff') renameType = 'Content';
-						return path.join(renamedType);
-					},					              
-					install: true,
-					verbose: false,
-					cleanTargetDir: false					               
 				}
 			}
 		}
