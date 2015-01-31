@@ -28,6 +28,7 @@ build/Release
 node_modules/
 bower_components/
 CatalogWeb/lib/
+packages/
 
 # Users Environment Variables
 .lock-wscript
@@ -244,3 +245,5 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 CatalogWeb/.ntvs_analysis.dat
+CatalogWeb/package.json
+CatalogWeb/Gruntfile.js
