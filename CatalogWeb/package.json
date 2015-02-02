@@ -17,14 +17,5 @@
     "grunt-bower-task": "^0.4.0",
     "grunt-contrib-jshint": "^0.10.0",
     "matchdep": "^0.3.0"
-  },
-  "exportsOverride": {
-    "bootstrap": {
-      "../Content": "**/**/*.css",
-      "../Content/fonts": "**/fonts/*"      
-    },
-    "jquery": {
-      "../Scripts": "Exclude"
-    }
   }
 }
