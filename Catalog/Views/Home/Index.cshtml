@@ -19,7 +19,7 @@
                         <div>
                             <input type="checkbox" ng-click="allNeedsClicked()" ng-checked="allNeedsMet()" />All
                             <ul ng-repeat="item in items">
-                                <li class="list-unstyled"><input type="checkbox" ng-model="item.flag" />{{item.value}}</li>
+                                <li class="list-unstyled"><input type="checkbox" ng-model="item.flag" /><span ng-bind="item.value"></span></li>
                             </ul>
                         </div>
                     </div>
@@ -32,66 +32,64 @@
     </div>
     <div id="grid1" ui-grid="{ data: myData }" class="grid"></div>
 </div>
-    @section script{
-        <script>
-            angular.module('catalog.demo', ['ui.bootstrap','ui.grid']).controller('homeCtrl', function ($scope) {
-                //Bootstrap Mobile
-                $scope.isCollapsed = true;
+@section script{
+    <script>
+        angular.module('catalog.demo', ['ui.bootstrap', 'ui.grid']).controller('homeCtrl', function ($scope, $http) {
+            //Bootstrap Mobile
+            $scope.isCollapsed = true;
+            $scope.copyright = "© " + new Date().getFullYear();
 
-                //Start: Typeahead stuff
-                $scope.selected = undefined;
-                $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
-                //End
+            //Start: Typeahead stuff
+            $scope.selected = undefined;
+            $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+            //End
 
-                //Filter
-                $scope.items = [{
-                    value: "Apples",
-                    flag: false
-                }, {
-                    value: "Oranges",
-                    flag: false
-                }, {
-                    value: "Pears",
-                    flag: false
-                }];
-                $scope.itemsUnchanged = angular.copy($scope.items);
+            //Filter
+            $scope.items = [{
+                value: "Apples",
+                flag: false
+            }, {
+                value: "Oranges",
+                flag: false
+            }, {
+                value: "Pears",
+                flag: false
+            }];
+            $scope.itemsUnchanged = angular.copy($scope.items);
 
-                $scope.allNeedsClicked = function () {
-                    var newValue = !$scope.allNeedsMet();
-                    for (var i = 0; i < $scope.items.length; i++) {
-                        $scope.items[i].flag = newValue;
-                    }
-                };
+            $scope.allNeedsClicked = function () {
+                var newValue = !$scope.allNeedsMet();
+                for (var i = 0; i < $scope.items.length; i++) {
+                    $scope.items[i].flag = newValue;
+                }
+            };
 
-                $scope.allNeedsMet = function () {
-                    var needsMet = [];
-                    for (var i = 0; i < $scope.items.length; i++) {
-                        if ($scope.items[i].flag === true)
-                            needsMet.push(true);
-                    }
-                    return (needsMet.length === $scope.items.length);
-                };
+            $scope.allNeedsMet = function () {
+                var needsMet = [];
+                for (var i = 0; i < $scope.items.length; i++) {
+                    if ($scope.items[i].flag === true)
+                        needsMet.push(true);
+                }
+                return (needsMet.length === $scope.items.length);
+            };
 
-                $scope.update = function () {
-                    //test if equal and not changed, ande return true is updated/changed.
-                    return !angular.equals($scope.items, $scope.itemsUnchanged);
-                };
+            $scope.update = function () {
+                //test if equal and not changed, ande return true is updated/changed.
+                return !angular.equals($scope.items, $scope.itemsUnchanged);
+            };
 
-                $scope.url = function () {
-                    var values = [];
-                    angular.forEach($scope.items, function (key, value) {
-                        if (key.flag)
-                            url.push(key.value);
-                    });
-                    return (values.toString()) ? "" : this;
-                };
+            $scope.url = function () {
+                var values = [];
+                angular.forEach($scope.items, function (key, value) {
+                    if (key.flag)
+                        url.push(key.value);
+                });
+                return (values.toString()) ? "" : this;
+            };
 
-                $scope.myData = [{ name: "Moroni", age: 50 },
-                     { name: "Tiancum", age: 43 },
-                     { name: "Jacob", age: 27 },
-                     { name: "Nephi", age: 29 },
-                     { name: "Enos", age: 34 }];
-                $scope.gridOptions = { data: 'myData' };
-            });
-        </script>
-    }
+            $scope.myData = {};
+            $scope.gridOptions = { data: 'myData' };
+            $http.get("Scripts/example.js").success(function (response) { $scope.myData = response; });
+        });
+    </script>
+}

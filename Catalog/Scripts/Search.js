@@ -6,6 +6,9 @@
 })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 ga('create', 'UA-41648493-8', 'auto');
 ga('send', 'pageview');
+window.addEventListener('error', function (e) {
+	ga('send', 'event', 'Javascript Error', e.filename + ':  ' + e.lineno, e.message); 
+}); 
 
 function SearchController($scope) {
 	$scope.isLoadingSolr = false;
@@ -24,6 +27,7 @@ function SearchController($scope) {
 				$scope.$apply(function () {
 					$scope.isLoadingSolr = false;
 					$scope.solrResult = data;
+					$scope.myData = data;
 				});
 			}
 		);
