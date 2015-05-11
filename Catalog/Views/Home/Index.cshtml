@@ -10,12 +10,12 @@
                         <div class="input-group-btn">
                             <button type="submit" class="btn btn-success btn-lg"><i class="fa fa-search"></i></button>
                         </div>
-                        <input type="text" name="q" autocomplete="off" class="form-control hidden-print" placeholder="Search" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8">
+                        <input type="text" name="q" autocomplete="off" class="form-control hidden-print" placeholder="Search" ng-model="selected" typeahead="title for title in titles | filter:$viewValue | limitTo:8">
                     </div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <label>Filter by: State's produce <span class="label label-default" ng-bind="update() ? 'changed' : 'unchange' "></span></label>
+                        <label>Filter by qualifications: <span class="label label-default" ng-bind="update() ? 'changed' : 'unchange' "></span></label>
                         <div>
                             <input type="checkbox" ng-click="allNeedsClicked()" ng-checked="allNeedsMet()" />All
                             <ul ng-repeat="item in items">
@@ -30,7 +30,7 @@
             </form>
         </div>
     </div>
-    <div id="grid1" ui-grid="{ data: myData }" class="grid"></div>
+    <div id="grid1" ui-grid="gridOptions" class=" grid"></div>
 </div>
 @section script{
     <script>
@@ -41,18 +41,31 @@
 
             //Start: Typeahead stuff
             $scope.selected = undefined;
-            $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+            //Point is not to create so many titles, just the best fit!
+            $scope.titles = ['Software Engineer',
+                             'Application Developer',
+                             'Project Manager',
+                             'Team Leader',
+                             'Idealist',
+                             'Game Programmer',
+                             'Game Designer',
+                             'Dreamer',
+                             'Web Developer',
+                             'Web Designer',
+                             'Writer/Story Teller',
+                             'UI/UX',
+                             'Artist'];
             //End
 
             //Filter
             $scope.items = [{
-                value: "Apples",
+                value: "Programming",
                 flag: false
             }, {
-                value: "Oranges",
+                value: "Designing",
                 flag: false
             }, {
-                value: "Pears",
+                value: "Managing",
                 flag: false
             }];
             $scope.itemsUnchanged = angular.copy($scope.items);
@@ -88,7 +101,11 @@
             };
 
             $scope.myData = {};
-            $scope.gridOptions = { data: 'myData' };
+            $scope.gridOptions = {
+                data: 'myData',
+                enableHorizontalScrollbar: 0,
+                enableVerticalScrollbar: 0
+            };
             $http.get("Scripts/example.js").success(function (response) { $scope.myData = response; });
         });
     </script>

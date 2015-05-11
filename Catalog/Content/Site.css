@@ -37,9 +37,18 @@ body {
 .typeahead-wide > ul {
 	width: 100%;
 }
-#grid1 {
-	height: 190px;
-  }
+.grid {
+	height: 180px;
+}
+.ui-grid-header-cell {  
+  background-color:white;
+}
+.ui-grid-row:nth-child(even) .ui-grid-cell {
+  background-color: #fff;
+}
+.ui-grid-row:nth-child(odd) .ui-grid-cell {
+  background-color: #f9f9f9;
+}
 
 /*Page Transitions*/
 .at-view-slide-out-left.ng-leave {

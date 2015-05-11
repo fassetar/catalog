@@ -32,6 +32,15 @@ namespace Catalog.Controllers
 			}
 			return View();
 		}
+		public ActionResult About()
+		{
+			return View();
+		}
+
+		public ActionResult Contact()
+		{
+			return View();
+		}
 
 		/// <summary>Search Grid Display</summary>
 		/// <param name="parameters"></param>
@@ -80,10 +89,10 @@ namespace Catalog.Controllers
 		/// <returns></returns>
 		public ISolrQuery BuildQuery(SearchParameters parameters)
 		{
-		    return !string.IsNullOrEmpty(parameters.FreeSearch) ? new SolrQuery(parameters.FreeSearch) : SolrQuery.All;
+			return !string.IsNullOrEmpty(parameters.FreeSearch) ? new SolrQuery(parameters.FreeSearch) : SolrQuery.All;
 		}
 
-	    /// <summary>Applying Search Filters</summary>
+		/// <summary>Applying Search Filters</summary>
 		/// <param name="parameters"></param>
 		/// <returns></returns>
 		public ICollection<ISolrQuery> BuildFilterQueries(SearchParameters parameters)
