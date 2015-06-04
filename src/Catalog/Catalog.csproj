@@ -299,9 +299,6 @@
     <Content Include="Offline.appcache" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SolrNet.chm" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Home\About.cshtml" />
   </ItemGroup>
   <ItemGroup>
