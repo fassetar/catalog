@@ -1,10 +1,10 @@
 {
-  "name": "Catalog",
+  "name": "Catalog-Demo",
   "version": "0.0.0",
   "description": "Catalog",
   "main": "app.js",
   "author": {
-    "name": "Anthony",
+    "name": "Anthony Fassett",
     "email": "fassetar@gmail.com"
   },
   "repository": {
