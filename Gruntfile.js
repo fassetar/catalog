@@ -6,7 +6,7 @@ module.exports = function (grunt) {
 		bower: {
 			install: {
 				options: {                    
-                     layout: function(type, component, source) {
+					 layout: function(type, component, source) {
 					  var renamedType = type;
 					  if (type == 'js') renamedType = 'javascripts';
 					  else if (type == 'css') renamedType = 'stylesheets';
@@ -15,7 +15,7 @@ module.exports = function (grunt) {
 					}, 
 					cleanTargetDir: false,
 					targetDir: './lib'
-                }
+				}
 			}
 		}
 	});
