@@ -1,4 +1,4 @@
-Catalog-Demo
+Catalog
 ============
 
 [![Build status](http://img.shields.io/badge/Asp.net MVC-5.2.2-green.svg)](http://www.asp.net/mvc)
