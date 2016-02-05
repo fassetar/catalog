@@ -28,6 +28,7 @@
     <RestorePackages>true</RestorePackages>
     <NuGetPackageImportStamp>4959aba6</NuGetPackageImportStamp>
     <NuGetPackageImportStamp>999155fe</NuGetPackageImportStamp>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -249,7 +250,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="changelog.txt" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\site.min.css">
       <DependentUpon>site.css</DependentUpon>

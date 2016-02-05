@@ -32,16 +32,11 @@ namespace Catalog.Controllers
 			}
 			return View();
 		}
-		public ActionResult About()
+		public PartialViewResult _About()
 		{
-			return View();
+            return PartialView();
 		}
-
-		public ActionResult Contact()
-		{
-			return View();
-		}
-
+        		
 		/// <summary>Search Grid Display</summary>
 		/// <param name="parameters"></param>
 		/// <returns></returns>		

@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Catalog-Demo")]
+[assembly: AssemblyTitle("Catalog")]
 [assembly: AssemblyDescription("Providing essential logic for developer around the world.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Fassetar Studio")]
