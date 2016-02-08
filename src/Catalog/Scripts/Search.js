@@ -10,12 +10,7 @@ window.addEventListener('error', function (e) {
 	ga('send', 'event', 'Javascript Error', e.filename + ':  ' + e.lineno, e.message); 
 }); 
 
-var catalogApp = angular.module('catalogApp', ['ui.bootstrap', 'ui.grid']).run(function ($rootScope) {
-    $rootScope.showScrollAndGo = function (path) {
-        alert("I'm global foo!");
-    };
-});
-catalogApp.controller('homeCtrl', function ($scope, $http) {
+var catalogApp = angular.module('catalogApp', ['ui.bootstrap', 'ui.grid']).controller('homeCtrl', function ($scope, $http) {
     //Bootstrap Mobile
     $scope.isCollapsed = true;
     $scope.copyright = "© " + new Date().getFullYear();
@@ -87,19 +82,15 @@ catalogApp.controller('homeCtrl', function ($scope, $http) {
         enableHorizontalScrollbar: 0,
         enableVerticalScrollbar: 0
     };
-    $http.get("Scripts/example.js").success(function (response) { $scope.myData = response; });    
-    //$http.get({
-    //    method: 'JSONP', url: url
-    //}).success(function (response) {
-    //    console.log(response);
-    //    $scope.myData = response;
-    //});
+    $http.get("Scripts/example.js").success(function (response) { $scope.myData = response; });       
 }).factory('myService', function () {
     return {
         foo: function () {
             alert("I'm foo!");
         }
     };
+}).run(function ($rootScope, myService) {
+    $rootScope.catalogApp = myService;
 });
 
 

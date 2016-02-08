@@ -34,11 +34,11 @@
 </div>
 @section script{
     <script>
-            function showLabels(json) {
-                var labels = json.feed;
-                console.log(json);
-                return json.feed.category;
-            };
-</script>
-    <script src="http://anthonyfassett.blogspot.com/feeds/posts/summary?max=results=0&alt=json-in-script&callback=showLabels"></script>    
+        function showLabels(json) {
+            var labels = json.feed;
+            console.log(json);
+            return json.feed.category;
+        };
+    </script>
+    <script async="" src="http://anthonyfassett.blogspot.com/feeds/posts/summary?max=results=0&alt=json-in-script&callback=showLabels"></script>
 }
