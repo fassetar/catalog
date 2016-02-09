@@ -90,6 +90,7 @@ var catalogApp = angular.module('catalogApp', ['ui.bootstrap', 'ui.grid']).contr
     };
     $http.get("Scripts/example.js").success(function (response) { $scope.myData = response; });
     //'http://anthonyfassett.blogspot.com/feeds/posts/summary?max=results=0&alt=json-in-script&callback=initialize';
+    //https://gist.github.com/neilsoult/7255583
 }).factory('Initializer', function ($window, $q) {
 
     //Google's url for async maps initialization accepting callback function
