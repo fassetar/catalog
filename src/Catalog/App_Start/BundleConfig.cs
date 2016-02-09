@@ -9,8 +9,7 @@ namespace Catalog
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/Scripts/main").Include(
-                "~/Scripts/angular.js",
-                "~/Scripts/ui-bootstrap.js",
+                "~/Scripts/angular.js",                
                 "~/Scripts/ui-bootstrap-tpls.js",
                 "~/Scripts/ui-grid.js",
                 "~/Scripts/search.js"));

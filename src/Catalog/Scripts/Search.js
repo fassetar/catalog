@@ -10,20 +10,6 @@ window.addEventListener('error', function (e) {
     ga('send', 'event', 'Javascript Error', e.filename + ':  ' + e.lineno, e.message);
 });
 var catalogApp = angular.module('catalogApp', ['ui.bootstrap', 'ui.grid']).controller('homeCtrl', function ($scope, $http, Initializer) {
-    //var showLabels = function (json) {
-    //    var labels = json.feed;
-    //    console.log(json);
-    //    return json.feed.category;
-    //};
-
-    console.log(Initializer.mapsInitialized);
-    //Bootstrap Mobile
-    $scope.isCollapsed = true;
-    $scope.copyright = "© " + new Date().getFullYear();
-
-    //Start: Typeahead stuff
-    $scope.selected = undefined;
-    //Point is not to create so many titles, just the best fit!
     $scope.titles = ['Software Engineer',
                      'Application Developer',
                      'Project Manager',
@@ -37,19 +23,40 @@ var catalogApp = angular.module('catalogApp', ['ui.bootstrap', 'ui.grid']).contr
                      'Writer/Story Teller',
                      'UI/UX',
                      'Artist'];
-    //End
+    //var showLabels = function (json) {
+    //    var labels = json.feed;
+    //    console.log(json);
+    //    return json.feed.category;
+    //};
+
+    //Bootstrap Mobile
+    $scope.isCollapsed = true;
+    $scope.copyright = "© " + new Date().getFullYear();
+
+    //Start: Typeahead stuff
+    $scope.selected = undefined;
 
     //Filter
-    $scope.items = [{
-        value: "Programming",
-        flag: false
-    }, {
-        value: "Designing",
-        flag: false
-    }, {
-        value: "Managing",
-        flag: false
-    }];
+    $scope.items = [];
+    //[{
+    //    value: "Programming",
+    //    flag: false
+    //}, {
+    //    value: "Designing",
+    //    flag: false
+    //}, {
+    //    value: "Managing",
+    //    flag: false
+    //}];
+
+    //Point is not to create so many titles, just the best fit!
+    Initializer.mapsInitialized.then(function (val) {        
+        angular.forEach(val.feed.category, function (value, key) {
+            $scope.items.push({ value: value.term, flag: false});
+            console.log(key + ': ' + value.term);
+        });        
+    });    
+    //End    
     $scope.itemsUnchanged = angular.copy($scope.items);
 
     $scope.allNeedsClicked = function () {
@@ -89,11 +96,10 @@ var catalogApp = angular.module('catalogApp', ['ui.bootstrap', 'ui.grid']).contr
         enableVerticalScrollbar: 0
     };
     $http.get("Scripts/example.js").success(function (response) { $scope.myData = response; });
-    //'http://anthonyfassett.blogspot.com/feeds/posts/summary?max=results=0&alt=json-in-script&callback=initialize';
-    //https://gist.github.com/neilsoult/7255583
+
 }).factory('Initializer', function ($window, $q) {
 
-    //Google's url for async maps initialization accepting callback function
+    //Google's url for async blogs initialization accepting callback function
     var asyncUrl = 'http://anthonyfassett.blogspot.com/feeds/posts/summary?max=results=0&alt=json-in-script&callback=',
         mapsDefer = $q.defer();
 
@@ -102,12 +108,11 @@ var catalogApp = angular.module('catalogApp', ['ui.bootstrap', 'ui.grid']).contr
 
     //Async loader
     var asyncLoad = function (asyncUrl, callbackName) {
-        var script = document.createElement('script');
-        //script.type = 'text/javascript';
+        var script = document.createElement('script');        
         script.src = asyncUrl + callbackName;
         document.body.appendChild(script);
     };
-    //Start loading google maps
+    //Start loading blogger
     asyncLoad(asyncUrl, 'googleMapsInitialized');
 
     //Usage: Initializer.mapsInitialized.then(callback)

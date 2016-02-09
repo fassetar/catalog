@@ -16,11 +16,14 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <label>Filter by qualifications: <span class="label label-default" ng-bind="update() ? 'changed' : 'unchange' "></span></label>
-                        <div>
-                            <input type="checkbox" ng-click="allNeedsClicked()" ng-checked="allNeedsMet()" />All
-                            <ul ng-repeat="item in items">
-                                <li class="list-unstyled"><input type="checkbox" ng-model="item.flag" /><span ng-bind="item.value"></span></li>
-                            </ul>
+                        <br />
+                        <input type="checkbox" ng-click="allNeedsClicked()" ng-checked="allNeedsMet()" />All
+                        <div class="container">
+                            <div class="row">
+                                <div ng-repeat="item in items" class="col-sm-3">
+                                    <input class="pull-left" type="checkbox" ng-model="item.flag" /><span ng-bind="item.value"></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
