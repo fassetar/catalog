@@ -23,14 +23,10 @@ var catalogApp = angular.module('catalogApp', ['ui.bootstrap', 'ui.grid']).contr
                      'Writer/Story Teller',
                      'UI/UX',
                      'Artist'];
-    //var showLabels = function (json) {
-    //    var labels = json.feed;
-    //    console.log(json);
-    //    return json.feed.category;
-    //};
 
     //Bootstrap Mobile
     $scope.isCollapsed = true;
+    $scope.isExpended = false;
     $scope.copyright = "© " + new Date().getFullYear();
 
     //Start: Typeahead stuff
@@ -50,10 +46,9 @@ var catalogApp = angular.module('catalogApp', ['ui.bootstrap', 'ui.grid']).contr
     //}];
 
     //Point is not to create so many titles, just the best fit!
-    Initializer.mapsInitialized.then(function (val) {        
+    Initializer.blogsInitialized.then(function (val) {        
         angular.forEach(val.feed.category, function (value, key) {
-            $scope.items.push({ value: value.term, flag: false});
-            console.log(key + ': ' + value.term);
+            $scope.items.push({ value: value.term, flag: false});            
         });        
     });    
     //End    
@@ -101,10 +96,10 @@ var catalogApp = angular.module('catalogApp', ['ui.bootstrap', 'ui.grid']).contr
 
     //Google's url for async blogs initialization accepting callback function
     var asyncUrl = 'http://anthonyfassett.blogspot.com/feeds/posts/summary?max=results=0&alt=json-in-script&callback=',
-        mapsDefer = $q.defer();
+        bogsDefer = $q.defer();
 
     //Callback function - resolving promise after maps successfully loaded
-    $window.googleMapsInitialized = mapsDefer.resolve; // removed ()
+    $window.googleBloggerInitialized = bogsDefer.resolve; // removed ()
 
     //Async loader
     var asyncLoad = function (asyncUrl, callbackName) {
@@ -113,11 +108,11 @@ var catalogApp = angular.module('catalogApp', ['ui.bootstrap', 'ui.grid']).contr
         document.body.appendChild(script);
     };
     //Start loading blogger
-    asyncLoad(asyncUrl, 'googleMapsInitialized');
+    asyncLoad(asyncUrl, 'googleBloggerInitialized');
 
-    //Usage: Initializer.mapsInitialized.then(callback)
+    //Usage: Initializer.blogsInitialized.then(callback)
     return {
-        mapsInitialized: mapsDefer.promise
+        blogsInitialized: bogsDefer.promise
     };
 });
 

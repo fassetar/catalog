@@ -14,27 +14,33 @@
                     </div>
                 </div>
                 <div class="panel panel-default">
-                    <div class="panel-body">
-                        <label>Filter by qualifications: <span class="label label-default" ng-bind="update() ? 'changed' : 'unchange' "></span></label>
-                        <br />
-                        <input type="checkbox" ng-click="allNeedsClicked()" ng-checked="allNeedsMet()" />All
-                        <div class="container">
-                            <div class="row">
-                                <div ng-repeat="item in items" class="col-sm-3">
-                                    <input class="pull-left" type="checkbox" ng-model="item.flag" /><span ng-bind="item.value"></span>
+                    <button type="button" class="btn btn-default" ng-click="isExpended = !isExpended">Toggle collapse</button>
+                    {{isExpended}}                    
+                    <div class="panel-body" uib-collapse="isExpended">
+                        <div >
+                            <div class="well well-lg">
+                                <label>Filter by qualifications: <span class="label label-default" ng-bind="update() ? 'changed' : 'unchange' "></span></label>
+                                <br />
+                                <input type="checkbox" ng-click="allNeedsClicked()" ng-checked="allNeedsMet()" />All
+                                <div class="container">
+                                    <div class="row">
+                                        <div ng-repeat="item in items" class="col-sm-3">
+                                            <input class="pull-left" type="checkbox" ng-model="item.flag" /><span ng-bind="item.value"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-repeat="item in items">
+                                    <input hidden type="text" name="fq" ng-model="item.value" ng-if="item.flag" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div ng-repeat="item in items">
-                    <input hidden type="text" name="fq" ng-model="item.value" ng-if="item.flag" />
-                </div>
             </form>
         </div>
     </div>
-    <div id="grid1" ui-grid="gridOptions" class="grid"></div>        
+    <div id="grid1" ui-grid="gridOptions" class="grid"></div>
 </div>
-@section script{        
-    <lazy-Load></lazy-Load>    
+@section script{
+    <lazy-Load></lazy-Load>
 }
