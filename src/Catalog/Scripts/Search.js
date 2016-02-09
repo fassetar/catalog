@@ -9,8 +9,14 @@ ga('send', 'pageview');
 window.addEventListener('error', function (e) {
 	ga('send', 'event', 'Javascript Error', e.filename + ':  ' + e.lineno, e.message); 
 }); 
-
 var catalogApp = angular.module('catalogApp', ['ui.bootstrap', 'ui.grid']).controller('homeCtrl', function ($scope, $http) {
+    //var showLabels = function (json) {
+    //    var labels = json.feed;
+    //    console.log(json);
+    //    return json.feed.category;
+    //};
+
+
     //Bootstrap Mobile
     $scope.isCollapsed = true;
     $scope.copyright = "© " + new Date().getFullYear();
@@ -82,16 +88,48 @@ var catalogApp = angular.module('catalogApp', ['ui.bootstrap', 'ui.grid']).contr
         enableHorizontalScrollbar: 0,
         enableVerticalScrollbar: 0
     };
-    $http.get("Scripts/example.js").success(function (response) { $scope.myData = response; });       
-}).factory('myService', function () {
+    $http.get("Scripts/example.js").success(function (response) { $scope.myData = response; });
+
+}).directive('lazyLoad', ['$window', '$q', function ($window, $q) {
+    function load_script() {
+        var s = document.createElement('script'); // use global document since Angular's $document is weak
+        s.src = 'http://anthonyfassett.blogspot.com/feeds/posts/summary?max=results=0&alt=json-in-script&callback=initialize';
+        document.body.appendChild(s);
+    }
+    function lazyLoadApi(key) {
+        var deferred = $q.defer();
+        $window.initialize = function () {
+            deferred.resolve();
+        };
+        if ($window.attachEvent) {
+            $window.attachEvent('onload', load_script);
+        } else {
+            $window.addEventListener('load', load_script, false);
+        }
+        return deferred.promise;
+    }
     return {
-        foo: function () {
-            alert("I'm foo!");
+        restrict: 'E',
+        link: function (scope, element, attrs) {
+            // function content is optional
+            // in this example, it shows how and when the promises are resolved
+            if ($window.initialize) {
+                console.log('blog loaded');
+            } else {
+                lazyLoadApi().then(function () {
+                    console.log('promise resolved');
+                    if ($window.initialize) {
+                        console.log('blog loaded');
+                    } else {
+                        console.log('blog not loaded');
+                    }
+                }, function () {
+                    console.log('promise rejected');
+                });
+            }
         }
     };
-}).run(function ($rootScope, myService) {
-    $rootScope.catalogApp = myService;
-});
+}]);
 
 
 function SearchController($scope) {
