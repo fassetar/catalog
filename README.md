@@ -21,3 +21,9 @@ Requirements
  - ng-grid
  - ng-animate
 
+Purpose (Draft)
+============
+ - This project demo's locally an example using solr+solrnet
+ - On the server demo's real data from blogger without solr 
+   - Allow users to search the blog, github projects, and linkedin info.
+ - Demo's in docs with azure + solr
