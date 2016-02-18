@@ -1,0 +1,107 @@
+{
+  "version": "1.0",
+  "encoding": "UTF-8",
+  "feed": {
+    "xmlns": "http://www.w3.org/2005/Atom",
+    "xmlns$openSearch": "http://a9.com/-/spec/opensearchrss/1.0/",
+    "xmlns$blogger": "http://schemas.google.com/blogger/2008",
+    "xmlns$georss": "http://www.georss.org/georss",
+    "xmlns$gd": "http://schemas.google.com/g/2005",
+    "xmlns$thr": "http://purl.org/syndication/thread/1.0",
+    "id": { "$t": "tag:blogger.com,1999:blog-1499547302022759597" },
+    "updated": { "$t": "2016-02-17T22:46:05.294-05:00" },
+    "category": [      
+      { "term": "WebGL" }
+    ],
+    "title": {
+      "type": "text",
+      "$t": "Anthony Fassett's Blog"
+    },
+    "subtitle": {
+      "type": "html",
+      "$t": "Just code and whatever sparks my interest.  "
+    },
+    "link": [           
+      {
+        "rel": "next",
+        "type": "application/atom+xml",
+        "href": "http://www.blogger.com/feeds/1499547302022759597/posts/summary?alt=json&start-index=26&max-results=25"
+      }
+    ],
+    "author": [
+      {
+        "name": { "$t": "Anthony Fassett" },
+        "email": { "$t": "noreply@blogger.com" },
+        "gd$image": {
+          "rel": "http://schemas.google.com/g/2005#thumbnail",
+          "width": "32",
+          "height": "32",
+          "src": "//lh3.googleusercontent.com/-amlY5-Pth6k/AAAAAAAAAAI/AAAAAAAAD2U/A1UVHk0E3aA/s512-c/photo.jpg"
+        }
+      }
+    ],
+    "generator": {
+      "version": "7.00",
+      "uri": "http://www.blogger.com",
+      "$t": "Blogger"
+    },
+    "openSearch$totalResults": { "$t": "180" },
+    "openSearch$startIndex": { "$t": "1" },
+    "openSearch$itemsPerPage": { "$t": "25" },
+    "entry": [
+      {
+        "id": { "$t": "tag:blogger.com,1999:blog-1499547302022759597.post-3052339835173259199" },
+        "published": { "$t": "2016-02-17T22:46:00.001-05:00" },
+        "updated": { "$t": "2016-02-17T22:46:05.304-05:00" },
+        "category": [
+          {
+            "scheme": "http://www.blogger.com/atom/ns#",
+            "term": "Android"
+          }
+        ],
+        "title": {
+          "type": "text",
+          "$t": "Retrofit Callback instead of Async Handler"
+        },
+        "summary": {
+          "type": "text",
+          "$t": "\n   For a quick and dirty solution I used an async handler in my activity, to call an api. I sometime need to see things work right for a sanity check, and win whatever small achievement it holds. Whether its just to reassure me I'm on the right path. So below is a quick and simple change but makes all the difference.\n\n\n@GET(\"/GetTimes/{id}\")\n\npublic ArrayList<YourObject> GrabData(@Path(\"id\") "
+        },
+        "link": [
+          {
+            "rel": "edit",
+            "type": "application/atom+xml",
+            "href": "http://www.blogger.com/feeds/1499547302022759597/posts/default/3052339835173259199"
+          },
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "http://www.blogger.com/feeds/1499547302022759597/posts/default/3052339835173259199"
+          },
+          {
+            "rel": "alternate",
+            "type": "text/html",
+            "href": "http://anthonyfassett.blogspot.com/2016/02/retrofit-callback-instead-of-async.html",
+            "title": "Retrofit Callback instead of Async Handler"
+          }
+        ],
+        "author": [
+          {
+            "name": { "$t": "Anthony Fassett" },
+            "uri": { "$t": "https://plus.google.com/104755139373787783858" },
+            "email": { "$t": "noreply@blogger.com" },
+            "gd$image": {
+              "rel": "http://schemas.google.com/g/2005#thumbnail",
+              "width": "32",
+              "height": "32",
+              "src": "//lh3.googleusercontent.com/-amlY5-Pth6k/AAAAAAAAAAI/AAAAAAAAD2U/A1UVHk0E3aA/s512-c/photo.jpg"
+            }
+          }
+        ],
+        "georss$featurename": { "$t": "Philadelphia, PA, USA" },
+        "georss$point": { "$t": "39.9525839 -75.16522150000003" },
+        "georss$box": { "$t": "39.5633714 -75.810668500000034 40.3417964 -74.519774500000025" }
+      }      
+    ]
+  }
+}
