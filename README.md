@@ -6,8 +6,6 @@ Catalog
 
 Application that is used for demo purposes only, and maintained to show my best practices.
 
-http://www.interoperabilitybridges.com/Azure/Getting_Started_Guide_Solr_Lucene.asp
-
 Requirements
 ============
 > I Avoid using the Jquery or any other javascripts included in the Asp.net Template. Handle all js files in Node solutions.
