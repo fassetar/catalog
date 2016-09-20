@@ -2,7 +2,7 @@ Catalog
 ============
 
 [![Build status](http://img.shields.io/badge/Asp.net MVC-5.2.2-green.svg)](http://www.asp.net/mvc)
-[![devDependency Status](https://david-dm.org/fassetar/Catalog/dev-status.svg)](https://david-dm.org/fassetar/Catalog#info=devDependencies)
+[![devDependency Status](https://david-dm.org/fassetar/Catalog/dev-status.svg)](https://david-dm.org/fassetar/Catalog?type=dev)
 
 Application that is used for demo purposes only, and maintained to show my best practices.
 
