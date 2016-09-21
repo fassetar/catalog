@@ -25,7 +25,7 @@
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
+    <RestorePackages>false</RestorePackages>
     <NuGetPackageImportStamp>4959aba6</NuGetPackageImportStamp>
     <NuGetPackageImportStamp>999155fe</NuGetPackageImportStamp>
     <UseGlobalApplicationHostFile />
@@ -38,7 +38,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Catalog.XML</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
     <PublishDatabaseSettings>
       <Objects>
       </Objects>
