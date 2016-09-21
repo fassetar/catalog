@@ -46,11 +46,11 @@ var catalogApp = angular.module('catalogApp', ['ui.bootstrap', 'ui.grid']).contr
     //}];
 
     //Point is not to create so many titles, just the best fit!
-    Initializer.blogsInitialized.then(function (val) {        
+    Initializer.blogsInitialized.then(function (val) {
         angular.forEach(val.feed.category, function (value, key) {
-            $scope.items.push({ value: value.term, flag: false});            
-        });        
-    });    
+            $scope.items.push({ value: value.term, flag: false });
+        });
+    });
     //End    
     $scope.itemsUnchanged = angular.copy($scope.items);
 
@@ -103,7 +103,7 @@ var catalogApp = angular.module('catalogApp', ['ui.bootstrap', 'ui.grid']).contr
 
     //Async loader
     var asyncLoad = function (asyncUrl, callbackName) {
-        var script = document.createElement('script');        
+        var script = document.createElement('script');
         script.src = asyncUrl + callbackName;
         document.body.appendChild(script);
     };

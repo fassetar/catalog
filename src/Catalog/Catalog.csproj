@@ -292,9 +292,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Offline.appcache" />
   </ItemGroup>
   <ItemGroup>
