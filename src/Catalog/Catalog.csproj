@@ -296,9 +296,6 @@
     <Content Include="Offline.appcache" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\About.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Home\Contact.cshtml" />
   </ItemGroup>
   <PropertyGroup>
