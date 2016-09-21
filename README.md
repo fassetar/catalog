@@ -21,7 +21,7 @@ Requirements
 
 Purpose
 ============
- This project is currently hosted on azure and using gcloud to solr. Data from my blog is listed in the data and the facets are pulled directly from my blog rather than listed in the application.
+ This project is currently hosted on azure and using gcloud to host solr. Data is coming from my blog in my blog title and tags and the facets are pulled directly from my blog rather than listed in the application.
  
   - This project demo's locally an example using solr+solrnet
  - On the server demo's real data from blogger without solr 
