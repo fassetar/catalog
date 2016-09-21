@@ -11,17 +11,19 @@ Requirements
 > I Avoid using the Jquery or any other javascripts included in the Asp.net Template. Handle all js files in Node solutions.
  For Custom Javascripts build as you would normally in the asp.net solution and bundle them in with node.
  
- - NodeJs
+ - NodeJs v12
  - Asp.net MVC 5.0
- - AngularJs 
- - Angular-UI-Bootstrap
- - ng-route
- - ng-grid
- - ng-animate
+ - angular 1.5
+ - ui-bootstrap
+ - ui-route
+ - ui-grid
+ - ui-animate
 
-Purpose (Draft)
+Purpose
 ============
- - This project demo's locally an example using solr+solrnet
+ This project is currently hosted on azure and using gcloud to solr. Data from my blog is listed in the data and the facets are pulled directly from my blog rather than listed in the application.
+ 
+  - This project demo's locally an example using solr+solrnet
  - On the server demo's real data from blogger without solr 
    - Allow users to search the blog, github projects, and linkedin info.
  - Demo's in docs with azure + solr
