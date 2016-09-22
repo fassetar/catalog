@@ -9,7 +9,7 @@ ga('send', 'pageview');
 window.addEventListener('error', function (e) {
     ga('send', 'event', 'Javascript Error', e.filename + ':  ' + e.lineno, e.message);
 });
-var catalogApp = angular.module('catalogApp', ['ui.bootstrap', 'ui.grid']).controller('homeCtrl', function ($scope, $http, Initializer) {
+var catalogApp = angular.module('catalogApp', ['ui.bootstrap', 'ui.grid', 'ngAnimate', 'ngSanitize']).controller('homeCtrl', function ($scope, $http, Initializer) {
     $scope.titles = ['Software Engineer',
                      'Application Developer',
                      'Project Manager',
@@ -84,7 +84,7 @@ var catalogApp = angular.module('catalogApp', ['ui.bootstrap', 'ui.grid']).contr
 
 }).factory('Initializer', function ($window, $q) {
 
-    //Google's url for async blogs initialization accepting callback function
+    //Google's url for async blog initialization accepting callback function
     var asyncUrl = 'http://anthonyfassett.blogspot.com/feeds/posts/summary?max=results=0&alt=json-in-script&callback=',
         bogsDefer = $q.defer();
 
@@ -114,19 +114,16 @@ function SearchController($scope) {
     $scope.search = function () {
         $scope.isLoadingSolr = true;
 
-        $.getJSON(
-			'/Home/Search/' + $scope.categoryFilter,
-			{
-			    'q': $scope.searchTerm,
-			},
-			function (data) {
-			    $scope.$apply(function () {
-			        $scope.isLoadingSolr = false;
-			        $scope.solrResult = data;
-			        $scope.myData = data;
-			    });
-			}
-		);
+        $.getJSON('/Home/Search/' + $scope.categoryFilter, {
+            'q': $scope.searchTerm,
+        },
+        function (data) {
+            $scope.$apply(function () {
+                $scope.isLoadingSolr = false;
+                $scope.solrResult = data;
+                $scope.myData = data;
+            });
+        });
         $scope.categoryFilter = '';
     };
 

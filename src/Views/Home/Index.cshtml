@@ -1,12 +1,7 @@
 ﻿<div class="git-ribbon hidden-print">
     <a href="http://github.com/fassetar/catalog" rel="me">Find on GitHub</a>
 </div>
-
-<button type="button" class="btn btn-default" ng-click="isExpended = !isExpended">Toggle collapse</button>
 <hr>
-<div uib-collapse="isExpended">
-    <div class="well well-lg">Some content</div>
-</div>
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
@@ -21,22 +16,21 @@
                 </div>
                 <div class="panel panel-default">
                     <button type="button" class="btn btn-default" ng-click="isExpended = !isExpended">Toggle collapse</button>
-                    {{isExpended}}
-                    <div class="panel-body" uib-collapse="isExpended">
+                    <div class="panel-body" uib-collapse="!isExpended">
                         <div>
                             <div class="well well-lg">
-                                <label>Filter by qualifications: <span class="label label-default" ng-bind="update() ? 'changed' : 'unchange' "></span></label>
+                                <label>Filter by qualifications: <span class="label label-default" ng-bind="update() ? 'unchanged' : 'changed' "></span></label>
                                 <br />
                                 <input type="checkbox" ng-click="allNeedsClicked()" ng-checked="allNeedsMet()" />All
                                 <div class="container">
                                     <div class="row">
-                                        <div ng-repeat="item in items" class="col-sm-3">
-                                            <input class="pull-left" type="checkbox" ng-model="item.flag" /><span ng-bind="item.value"></span>
+                                        <div ng-repeat="item in items | orderBy:'value'" class="col-sm-3">
+                                            <i ng-class="item.flag? ' fa fa-check-square-o fa-lg' : 'fa fa-square-o fa-lg'"
+                                               ng-click="item.flag = !item.flag" style="color:#65B8E2;">
+                                            </i>
+                                            <span ng-bind="item.value"></span>
                                         </div>
                                     </div>
-                                </div>
-                                <div ng-repeat="item in items">
-                                    <input hidden type="text" name="fq" ng-model="item.value" ng-if="item.flag" />
                                 </div>
                             </div>
                         </div>
