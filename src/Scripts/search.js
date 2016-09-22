@@ -34,16 +34,6 @@ var catalogApp = angular.module('catalogApp', ['ui.bootstrap', 'ui.grid']).contr
 
     //Filter
     $scope.items = [];
-    //[{
-    //    value: "Programming",
-    //    flag: false
-    //}, {
-    //    value: "Designing",
-    //    flag: false
-    //}, {
-    //    value: "Managing",
-    //    flag: false
-    //}];
 
     //Point is not to create so many titles, just the best fit!
     Initializer.blogsInitialized.then(function (val) {
@@ -71,7 +61,7 @@ var catalogApp = angular.module('catalogApp', ['ui.bootstrap', 'ui.grid']).contr
     };
 
     $scope.update = function () {
-        //test if equal and not changed, ande return true is updated/changed.
+        //test if equal and not changed, and return true is updated/changed.
         return !angular.equals($scope.items, $scope.itemsUnchanged);
     };
 
