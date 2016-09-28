@@ -85,7 +85,7 @@ var catalogApp = angular.module('catalogApp', ['ui.bootstrap', 'ui.grid', 'ngAni
 }).factory('Initializer', function ($window, $q) {
 
     //Google's url for async blog initialization accepting callback function
-    var asyncUrl = 'http://anthonyfassett.blogspot.com/feeds/posts/summary?max=results=0&alt=json-in-script&callback=',
+    var asyncUrl = 'https://anthonyfassett.blogspot.com/feeds/posts/summary?max=results=0&alt=json-in-script&callback=',
         bogsDefer = $q.defer();
 
     //Callback function - resolving promise after maps successfully loaded
