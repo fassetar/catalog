@@ -64,7 +64,7 @@ namespace Catalog
 					}
 				}
 				solr.Commit();
-				solr.BuildSpellCheckDictionary();                
+				solr.BuildSpellCheckDictionary();
 			} catch (SolrConnectionException) {
 				//Should really log this instead.
 				//throw new Exception(string.Format("Couldn't connect to Solr. 

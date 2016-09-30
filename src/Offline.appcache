@@ -1,7 +1,7 @@
 CACHE MANIFEST
 CACHE:
-../Content/main.css
-../Scripts/main.js
+../Content/style.css
+../Scripts/app.js
 
 NETWORK:
 *
