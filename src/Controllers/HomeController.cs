@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
-using System.Web.Optimization;
 using System.Web.UI.WebControls;
 
 namespace Catalog.Controllers
@@ -26,11 +25,43 @@ namespace Catalog.Controllers
 
         public ActionResult Index(SearchParameters parameters)
         {
-            if (null != parameters)
+            try
+            {
+                var start = (parameters.PageIndex - 1) * parameters.PageSize;
+                var matchingProducts = _solrOperations.Query(BuildQuery(parameters), new QueryOptions
+                {
+                    FilterQueries = BuildFilterQueries(parameters),
+                    Rows = parameters.PageSize,
+                    Start = start,
+                    OrderBy = GetSelectedSort(parameters),
+                    SpellCheck = new SpellCheckingParameters(),
+                    Facet = new FacetParameters
+                    {
+                        Queries = AllFacetFields.Except(SelectedFacetFields(parameters))
+                            .Select(f => new SolrFacetFieldQuery(f) { MinCount = 1 })
+                            .Cast<ISolrFacetQuery>()
+                            .ToList(),
+                    },
+                });
+                ProductView view = new ProductView
+                {
+                    Products = matchingProducts,
+                    Search = parameters,
+                    TotalCount = matchingProducts.NumFound,
+                    Facets = matchingProducts.FacetFields,
+                    DidYouMean = GetSpellCheckingResult(matchingProducts),
+                };
+                return View(view);
+            }
+            catch (Exception e)
             {
 
+                return View(new ProductView
+                {
+                    QueryError = true,
+                    ErrorString = e.ToString()
+                });
             }
-            return View();
         }
         public ViewResult _About()
         {
@@ -55,9 +86,9 @@ namespace Catalog.Controllers
                     Facet = new FacetParameters
                     {
                         Queries = AllFacetFields.Except(SelectedFacetFields(parameters))
-                                                                              .Select(f => new SolrFacetFieldQuery(f) { MinCount = 1 })
-                                                                              .Cast<ISolrFacetQuery>()
-                                                                              .ToList(),
+                            .Select(f => new SolrFacetFieldQuery(f) { MinCount = 1 })
+                            .Cast<ISolrFacetQuery>()
+                            .ToList(),
                     },
                 });
                 ProductView view = new ProductView

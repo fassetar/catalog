@@ -32,7 +32,7 @@ namespace Catalog
 			ModelBinders.Binders[typeof(SearchParameters)] = new SearchParametersBinder();
 
 			//var task = new System.Threading.Tasks.Task(AddInitialDocuments);
-			AddInitialDocuments();
+			//AddInitialDocuments();
 		}
 		
 		public IEnumerable<SolrNet.ExtractField> fields = new SolrNet.ExtractField[] {new ExtractField("sku","PDF") };
