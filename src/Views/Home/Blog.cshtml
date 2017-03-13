@@ -1,0 +1,48 @@
+﻿@model Catalog.Models.ProductView
+@{
+    ViewBag.Title = "Blog";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <form action="/" method="get">
+                <div class="form-group">
+                    <div class="input-group typeahead-wide input-group-lg">
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-success btn-lg"><i class="fa fa-search"></i></button>
+                        </div>
+                        @*@Html.TextBox("q", Model.Search.FreeSearch)*@
+                        <input type="text" name="q" autocomplete="off" class="form-control hidden-print" placeholder="Search" ng-model="selected" typeahead="title for title in titles | filter:$viewValue | limitTo:8">
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <button type="button" class="btn btn-default" ng-click="isExpended = !isExpended">Toggle collapse</button>
+                    <div class="panel-body" uib-collapse="!isExpended">
+                        <div class="well well-lg">
+                            <label>Filter by qualifications: <span class="label label-default" ng-bind="update() ? 'unchanged' : 'changed' "></span></label>
+                            <br />
+                            <i ng-class="allNeedsMet()? ' fa fa-check-square-o fa-lg' : 'fa fa-square-o fa-lg'"
+                               ng-click="allNeedsClicked()" style="color:#65B8E2;">
+                            </i>
+                            <span><b>Select All</b></span>
+                            <input type="checkbox" ng-click="allNeedsClicked()" ng-checked="allNeedsMet()" />All
+                            <div class="container">
+                                <div class="row">
+                                    <div ng-repeat="item in items | orderBy:'value'" class="col-sm-3">
+                                        <i ng-class="item.flag? ' fa fa-check-square-o fa-lg' : 'fa fa-square-o fa-lg'"
+                                           ng-click="item.flag = !item.flag" style="color:#65B8E2;">
+                                        </i>
+                                        <span ng-bind="item.value"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section script{
+    <lazy-Load></lazy-Load>
+}

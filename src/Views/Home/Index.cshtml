@@ -1,201 +1,142 @@
 ﻿@model Catalog.Models.ProductView
 @using Catalog.Helpers
-<span class="ui-icon-minusthick"></span>
-@using (Html.BeginForm("Index", "Home", FormMethod.Get, new { id = "FreeSearch" }))
-{
-    @Html.TextBox("q", Model.Search.FreeSearch)
-    <input type="submit" value="Search" />
-    if (!string.IsNullOrEmpty(Model.DidYouMean))
-    {
-        <text>Did you mean</text><strong><em><a href="@Url.ForQuery(Model.DidYouMean)"> @Model.DidYouMean</a></em></strong>
-    }
-    if (Model.QueryError)
-    {
-        <span class="error">@Model.ErrorString</span>
-    }
-}
-<div class="container-fluid">
-    <strong>Filter Results By: </strong>
-    @foreach (var f in Model.Search.Facets)
-    {
-        <ul>
-            <li>
-                @(Html.SolrFieldPropName<Catalog.Models.Product>(f.Key))
-                <ul>
-                    <li><span class="ui-icon-minusthick"></span><a class="removeFacet" href="@Url.RemoveFacet(f.Key)"> @f.Value</a></li>
-                </ul>
-            </li>
+
+<div class="row">
+    <div class="col-md-4">
+        <strong>Filter Results By: </strong>
+        @foreach (var f in Model.Search.Facets)
+        {
+            <ul class="list-unstyled">
+                <li>
+                    @(Html.SolrFieldPropName<Catalog.Models.Product>(f.Key))
+                    <ul>
+                        <li><span class="fa fa-times-circle"></span><a class="removeFacet" href="@Url.RemoveFacet(f.Key)"> @f.Value</a></li>
+                    </ul>
+                </li>
+            </ul>
+        }
+
+        <ul class="list-unstyled">
+            @foreach (var f in Model.Facets)
+            {
+                <li>
+                    @{ if (f.Value.Count != 0)
+                        {
+                            <b>@(Html.SolrFieldPropName<Catalog.Models.Product>(f.Key))</b>
+                            <ul>
+                                @foreach (var fv in f.Value)
+                                {
+                                    <li>
+                                        <a class="" href="@Url.SetFacet(f.Key, fv.Key)"> @fv.Key <span class="badge">@fv.Value</span></a>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                    }
+                </li>
+                        }
         </ul>
-    }
-
-    <ul>
-        @foreach (var f in Model.Facets)
-        {
-            <li>
-                @{ if (f.Value.Count != 0)
-                    {
-                        <b>@(Html.SolrFieldPropName<Catalog.Models.Product>(f.Key))</b><!--Field Title-->
-                        <ul>
-                            @foreach (var fv in f.Value)
-                            {
-                                <li><a href="@Url.SetFacet(f.Key, fv.Key)"> @fv.Key </a><span>( @fv.Value )</span></li>
-                            }
-                        </ul>
-                    }
-                }
-            </li>
-                    }
-    </ul>
-</div>
-<div class="container-fluid">
-    @if (Model.Search.FreeSearch != null)
-    {
-        <h3>Results for "@Model.Search.FreeSearch"</h3>
-    }
-    else
-    {
-        <h3>Please enter a search...</h3>
-    }
-    <div style="margin-top:-20px;">To further refine your search, use the filters located on the left side of the screen or perform an <a href="#">Advanced Search</a></div>
-</div>
-<div class="container-fluid">
-    <div id="Header">
-        @if (string.IsNullOrEmpty(Model.Search.Sort))
-        {
-            <strong>Catalog Id</strong>
-        }
-        else
-        {
-            <a href="@Url.RemoveParameters("sort")">Catalog Id</a>
-        }
-        |
-        @if (Model.Search.Sort == "nameSort")
-        {
-            <strong>Sex</strong>
-        }
-        else
-        {
-            <a href="@Url.SetParameter("sort", "nameSort")">Sex</a>
-        }
-        |
-        @if (Model.Search.Sort == "price")
-        {
-            <strong>Age</strong>
-        }
-        else
-        {
-            <a href="@Url.SetParameter("sort", "price")">Age</a>
-        }
-        | Affeted | Cell Type |
-        @if (Model.Search.Sort.NotNullAnd(s => s.StartsWith("random")))
-        {
-            <strong>Random</strong>
-        }
-        else
-        {
-            <a href="@Url.SetParameter("sort", "random_" + Html.RandomNumber())">Random</a>
-        }
     </div>
-
-    <div class="container-fluid">
-        @foreach (var p in Model.Products)
+    <div class="col-md-7">
+        @using (Html.BeginForm("Index", "Home", FormMethod.Get, new { id = "FreeSearch" }))
         {
-            <div class="product">
-                <hr>
-                <div class="productName"> @p.Name </div>
-                Id: @p.Id
-                @if (p.Price != null)
-                {
-                    <label>Price:</label><span class="price"> @p.Price.ToString("C") </span><br />
-                }
-                @*Products:@Html.Repeat(p.Products, cat => {
-                    <a href="@Url.SetFacet("cat", cat)"><%= cat %></a><% }, () => {%>, <% }); %>*@
+            <div class="input-group">
+                @Html.TextBox("q", Model.Search.FreeSearch, new { @class = "form-control" })
+                <span class="input-group-btn">
+                    <input type="submit" value="Search" class="btn btn-primary" />
+                </span>
             </div>
+            <br />
+            if (!string.IsNullOrEmpty(Model.DidYouMean))
+            {
+                <text>Did you mean</text><strong><em><a href="@Url.ForQuery(Model.DidYouMean)"> @Model.DidYouMean</a></em></strong>
+            }
+            if (Model.QueryError)
+            {
+                <span class="error">@Model.ErrorString</span>
+            }
         }
-    </div>
-    <hr>
-    @*Html.Partial("Pagination", new Catalog.Models.PaginationInfo
-   {
-       PageUrl = Url.SetParameter("page", "!0"),
-       CurrentPage = Model.Search.PageIndex,
-       PageSize = Model.Search.PageSize,
-       TotalItemCount = Model.TotalCount,
-   })*@
+        <div class="container-fluid">
+            <div id="Header">
+                @if (string.IsNullOrEmpty(Model.Search.Sort))
+                {
+                    <strong>Best Match</strong>
+                }
+                else
+                {
+                    <a href="@Url.RemoveParameters("sort")">Best Match</a>
+                }
+                |
+                @if (Model.Search.Sort == "name")
+                {
+                    <strong>Name</strong>
+                }
+                else
+                {
+                    <a href="@Url.SetParameter("sort", "name")">Name</a>
+                }
+                |
+                @if (Model.Search.Sort == "price")
+                {
+                    <strong>Price</strong>
+                }
+                else
+                {
+                    <a href="@Url.SetParameter("sort", "price")">Price</a>
+                }
+                |
+                @if (Model.Search.Sort.NotNullAnd(s => s.StartsWith("random")))
+                {
+                    <strong>Random</strong>
+                }
+                else
+                {
+                    <a href="@Url.SetParameter("sort", "random_" + Html.RandomNumber())">Random</a>
+                }
+            </div>
 
-    <div class="pagesize">
-        @*<% Html.Repeat(new[] { 5, 10, 20 }, ps => { %>
-                <% if (ps == Model.Search.PageSize) { %>
-                <span><%= ps%></span>
-                <% } else { %>
-                <a href="<%= Url.SetParameters(new {pagesize = ps, page = 1}) %>"><%= ps%></a>
-                <% } %>
-            <% }, () => { %> | <% }); %>*@
-        @*items per page*@
-    </div>
-</div>
-
-
-@*@model Catalog.Models.ProductView
-
-<div class="container">
-    <div class="row">
-        <div class="col-lg-12">
-            <form action="/" method="get">
-                <div class="form-group">
-                    <div class="input-group typeahead-wide input-group-lg">
-                        <div class="input-group-btn">
-                            <button type="submit" class="btn btn-success btn-lg"><i class="fa fa-search"></i></button>
-                        </div>
-                        @Html.TextBox("q", Model.Search.FreeSearch)
-                        <input type="text" name="q" autocomplete="off" class="form-control hidden-print" placeholder="Search" ng-model="selected" typeahead="title for title in titles | filter:$viewValue | limitTo:8">
+            <div class="container-fluid">
+                @foreach (var p in Model.Products)
+                {
+                    <div class="product">
+                        <hr>
+                        <div class="productName"> @p.Name </div>
+                        Id: @p.Id
+                        <label>Price:</label><span class="price"> @p.Price.ToString("C") </span><br />
+                        Categories: @foreach (var item in p.Products)
+                        {
+                            <span class="label label-warning"><a href="@Url.SetParameter("f_cat", item)">@item</a></span>
+                        }
                     </div>
+                }
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.Partial("Pagination", new PaginationInfo
+                    {
+                       PageUrl = Url.SetParameter("page", "!0"),
+                       CurrentPage = Model.Search.PageIndex,
+                       PageSize = Model.Search.PageSize,
+                       TotalItemCount = Model.TotalCount
+                   })
                 </div>
-                <div class="panel panel-default">
-                    <button type="button" class="btn btn-default" ng-click="isExpended = !isExpended">Toggle collapse</button>
-                    <div class="panel-body" uib-collapse="!isExpended">
-                        <div class="well well-lg">
-                            <label>Filter by qualifications: <span class="label label-default" ng-bind="update() ? 'unchanged' : 'changed' "></span></label>
-                            <br />
-                            <i ng-class="allNeedsMet()? ' fa fa-check-square-o fa-lg' : 'fa fa-square-o fa-lg'"
-                               ng-click="allNeedsClicked()" style="color:#65B8E2;">
-                            </i>
-                            <span><b>Select All</b></span>
-                            @*<input type="checkbox" ng-click="allNeedsClicked()" ng-checked="allNeedsMet()" />All
-                            <div class="container">
-                                <div class="row">
-                                    <div ng-repeat="item in items | orderBy:'value'" class="col-sm-3">
-                                        <i ng-class="item.flag? ' fa fa-check-square-o fa-lg' : 'fa fa-square-o fa-lg'"
-                                           ng-click="item.flag = !item.flag" style="color:#65B8E2;">
-                                        </i>
-                                        <span ng-bind="item.value"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                <div class="col-md-6">
+                    @foreach (var item in new[] { 5, 10, 20 })
+                    {
+                        if (Model.Search.PageSize != item)
+                        {
+                            <a href="@Url.SetParameter("pagesize", item)">@item</a>
+                        }
+                        else
+                        {
+                            <strong>@item</strong>
+                        }
+                    }
+                    items per page
                 </div>
-            </form>
+            </div>
         </div>
     </div>
-    <div id="grid1" ui-grid="gridOptions" class="grid"></div>
-    <div id="SearchResults">
-        @foreach (var p in Model.Products)
-        {
-            <div class="product">
-                <hr>
-                <div class="productName"> @p.Name </div>
-                Id: @p.Id
-                @if (p.Price != null)
-                {
-                    <label>Price:</label><span class="price"> @p.Price.ToString("C") </span><br />
-                }
-                @*Products:@Html.Repeat(p.Products, cat => {
-                    <a href="@Url.SetFacet("cat", cat)"><%= cat %></a><% }, () => {%>, <% }); %>
-            </div>
-        }
-    </div>
-
 </div>
-@section script{
-    <lazy-Load></lazy-Load>
-}*@

@@ -63,7 +63,12 @@ namespace Catalog.Controllers
                 });
             }
         }
-        public ViewResult _About()
+        public ViewResult About()
+        {
+            return View();
+        }
+
+        public ViewResult Blog()
         {
             return View();
         }

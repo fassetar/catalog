@@ -1,0 +1,43 @@
+﻿@model Catalog.Models.PaginationInfo
+<div>
+    Results @Model.FirstItemIndex - @Model.LastItemIndex of <b>@Model.TotalItemCount</b>
+</div>
+<ul class="pagination">
+    @if (Model.HasPrevPage)
+    {
+        <li>
+            <a href="@Model.PrevPageUrl">&laquo;</a>
+        </li>
+    }
+    else
+    {
+        <li class="disabled">
+            <span class="disabledPage">&laquo;</span>
+        </li>
+    }
+
+    @foreach (var p in Model.Pages)
+    {
+        if (p == Model.CurrentPage)
+        {
+            <li class="active"><span class="currentPage">@p</span></li>
+        }
+        else
+        {
+            <li>
+                <a href="@Model.PageUrlFor(p)">@p</a>
+            </li>
+        }
+    }
+
+    @if (Model.HasNextPage)
+    {
+        <li><a href="@Model.NextPageUrl">&raquo;</a></li>
+    }
+    else
+    {
+        <li class="disabled">
+            <span class="disabledPage">&raquo;</span>
+        </li>
+    }
+</ul>
