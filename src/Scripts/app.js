@@ -80,7 +80,7 @@ var catalogApp = angular.module('catalogApp', ['ui.bootstrap', 'ui.grid', 'ngAni
         enableHorizontalScrollbar: 0,
         enableVerticalScrollbar: 0
     };
-    $http.get("~/Scripts/example.js").success(function (response) { $scope.myData = response; });
+    $http.get("/Scripts/example.js").success(function (response) { $scope.myData = response; });
 
 }).factory('Initializer', function ($window, $q) {
 
